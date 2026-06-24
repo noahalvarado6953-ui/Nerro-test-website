@@ -8,95 +8,95 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --onyx: #414141; --alabaster: #F5F0EB; --moss: #4A6741;
-      --juniper: #6B8C5F; --smoked: #3D3D3D; --silken: #C8C4BE;
-      --bg: #000; --surface: #0d0d0d; --elevated: #141414;
-      --border: rgba(255,255,255,0.07); --border-hi: rgba(255,255,255,0.13);
+      --moss: #4A6741;
+      --juniper: #6B8C5F;
+      --green: #7fa870;
+      --bg: #000;
+      --surface: #0d0d0d;
+      --elevated: #141414;
+      --border: rgba(255,255,255,0.07);
+      --border-hi: rgba(255,255,255,0.13);
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: #fff; font-family: 'Manrope', sans-serif; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: -0.025em; margin: 0; }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: -0.025em; margin: 0; }
     a { text-decoration: none; }
     button { cursor: pointer; font-family: 'Manrope', sans-serif; }
 
-    /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .d1{transition-delay:.07s} .d2{transition-delay:.14s} .d3{transition-delay:.21s}
-    .d4{transition-delay:.28s} .d5{transition-delay:.35s} .d6{transition-delay:.42s}
+    .d1{transition-delay:.07s} .d2{transition-delay:.15s} .d3{transition-delay:.22s} .d4{transition-delay:.3s} .d5{transition-delay:.37s}
 
-    /* ── MARQUEE ── */
+    /* MARQUEE */
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
-    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-track { display: flex; width: max-content; animation: marquee 36s linear infinite; }
 
-    /* ── NAV ── */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 56px; display: flex; align-items: center; padding: 0 28px; background: rgba(0,0,0,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: border-color 0.3s; }
-    nav.scrolled { border-color: var(--border-hi); }
-    .nav-link { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.52); transition: color 0.15s; }
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 64px; display: flex; align-items: center; padding: 0 32px;
+      background: rgba(0,0,0,0.9); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border); transition: border-color 0.3s, background 0.3s;
+    }
+    nav.scrolled { border-color: var(--border-hi); background: rgba(0,0,0,0.96); }
+    .nav-link { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.48); transition: color 0.15s; }
     .nav-link:hover { color: #fff; }
-    .btn-nav-ghost { background: transparent; color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.12); padding: 6px 13px; border-radius: 6px; font-size: 12px; font-weight: 500; transition: all 0.15s; }
-    .btn-nav-ghost:hover { border-color: rgba(255,255,255,0.3); color: #fff; background: rgba(255,255,255,0.05); }
-    .btn-nav-primary { background: #fff; color: #000; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; transition: background 0.15s, transform 0.1s; }
-    .btn-nav-primary:hover { background: var(--alabaster); }
+    .btn-nav-ghost { background: transparent; color: rgba(255,255,255,0.62); border: 1px solid rgba(255,255,255,0.12); padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; transition: all 0.15s; }
+    .btn-nav-ghost:hover { border-color: rgba(255,255,255,0.28); color: #fff; background: rgba(255,255,255,0.05); }
+    .btn-nav-primary { background: #fff; color: #000; border: none; padding: 7px 15px; border-radius: 6px; font-size: 12px; font-weight: 700; transition: background 0.15s, transform 0.1s; }
+    .btn-nav-primary:hover { background: #e6e6e6; }
     .btn-nav-primary:active { transform: scale(0.97); }
 
-    /* ── BUTTONS ── */
-    .btn-green { background: var(--juniper); color: #fff; border: none; padding: 12px 24px; border-radius: 7px; font-size: 14px; font-weight: 700; transition: background 0.15s, transform 0.1s, box-shadow 0.2s; display: inline-flex; align-items: center; gap: 6px; }
-    .btn-green:hover { background: var(--moss); box-shadow: 0 6px 24px rgba(74,103,65,0.32); }
-    .btn-green:active { transform: scale(0.97); }
-    .btn-ghost { background: transparent; color: rgba(255,255,255,0.72); border: 1px solid rgba(255,255,255,0.15); padding: 12px 22px; border-radius: 7px; font-size: 14px; font-weight: 500; transition: all 0.15s; }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.38); background: rgba(255,255,255,0.05); color: #fff; }
+    /* BUTTONS */
+    .btn-white { background: #fff; color: #000; border: none; padding: 13px 26px; border-radius: 7px; font-size: 14px; font-weight: 700; transition: background 0.15s, transform 0.1s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-white:hover { background: #e6e6e6; }
+    .btn-white:active { transform: scale(0.97); }
+    .btn-ghost { background: transparent; color: rgba(255,255,255,0.62); border: 1px solid rgba(255,255,255,0.15); padding: 13px 24px; border-radius: 7px; font-size: 14px; font-weight: 500; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); color: #fff; }
     .btn-ghost:active { transform: scale(0.97); }
+    .btn-green { background: var(--juniper); color: #fff; border: none; padding: 13px 26px; border-radius: 7px; font-size: 14px; font-weight: 700; transition: background 0.15s, transform 0.1s, box-shadow 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-green:hover { background: var(--moss); box-shadow: 0 6px 24px rgba(74,103,65,0.35); }
+    .btn-green:active { transform: scale(0.97); }
 
-    /* ── BROWSER CHROME ── */
-    .browser { background: #181818; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 20px 60px rgba(0,0,0,0.65), 0 60px 140px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05); }
-    .browser-bar { height: 34px; background: #111; border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; padding: 0 12px; gap: 6px; }
-    .dot { width: 9px; height: 9px; border-radius: 50%; }
-    .browser-url { margin-left: 8px; flex: 1; max-width: 200px; background: rgba(255,255,255,0.04); border-radius: 4px; padding: 3px 10px; font-size: 10.5px; color: rgba(255,255,255,0.28); font-family: 'Manrope',sans-serif; }
+    /* BROWSER CHROME */
+    .browser { background: #0d0d0d; border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 24px 80px rgba(0,0,0,0.75), 0 80px 180px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05); }
+    .browser-bar { height: 36px; background: #090909; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; padding: 0 14px; gap: 7px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-url { margin-left: 10px; flex: 1; max-width: 220px; background: rgba(255,255,255,0.04); border-radius: 5px; padding: 3px 10px; font-size: 10.5px; color: rgba(255,255,255,0.22); }
 
-    /* ── SERVICE GRID ── */
-    .service-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .service-cell { padding: 30px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #080808; transition: background 0.2s; }
+    /* CARDS */
+    .testi-card { background: #0a0a0a; border: 1px solid var(--border); border-radius: 14px; padding: 30px; transition: border-color 0.2s, background 0.2s; }
+    .testi-card:hover { border-color: var(--border-hi); background: #0f0f0f; }
+    .price-card { background: #0a0a0a; border: 1px solid var(--border); border-radius: 16px; padding: 40px 36px; }
+    .price-card.featured { border-color: rgba(107,140,95,0.42); background: rgba(107,140,95,0.04); position: relative; overflow: hidden; }
+    .price-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(107,140,95,0.72), transparent); }
+
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; cursor: pointer; font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.72); transition: color 0.15s; gap: 20px; }
+    .faq-q:hover, .faq-q.open { color: #fff; }
+    .faq-icon { width: 24px; height: 24px; border: 1px solid rgba(255,255,255,0.13); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; color: rgba(255,255,255,0.38); transition: all 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .faq-q.open .faq-icon { border-color: rgba(107,140,95,0.5); color: var(--green); transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1); }
+    .faq-a-inner { padding: 0 0 24px; font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.76; max-width: 640px; }
+
+    /* SERVICE GRID */
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .service-cell { padding: 32px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #080808; transition: background 0.2s; }
     .service-cell:hover { background: #0f0f0f; }
     .service-cell:nth-child(3n) { border-right: none; }
-    .service-cell:nth-child(4),.service-cell:nth-child(5),.service-cell:nth-child(6) { border-bottom: none; }
+    .service-cell:nth-child(4), .service-cell:nth-child(5), .service-cell:nth-child(6) { border-bottom: none; }
 
-    /* ── CARDS ── */
-    .testi-card { background: #0b0b0b; border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: border-color 0.2s, background 0.2s; }
-    .testi-card:hover { border-color: var(--border-hi); background: #101010; }
-    .port-card { background: #0b0b0b; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.25s, transform 0.35s cubic-bezier(0.22,1,0.36,1); cursor: pointer; }
-    .port-card:hover { border-color: rgba(107,140,95,0.3); transform: translateY(-5px); }
-    .port-card:hover .port-thumb { transform: scale(1.04); }
-    .port-thumb { transition: transform 0.55s cubic-bezier(0.22,1,0.36,1); display: block; width: 100%; }
-    .price-card { background: #0b0b0b; border: 1px solid var(--border); border-radius: 14px; padding: 36px 32px; }
-    .price-card.featured { border-color: rgba(107,140,95,0.4); background: rgba(107,140,95,0.04); position: relative; overflow: hidden; }
-    .price-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(107,140,95,0.6), transparent); }
-    .result-card { background: #0b0b0b; border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; }
-
-    /* ── FAQ ── */
-    .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; cursor: pointer; font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.78); transition: color 0.15s; gap: 20px; font-family: 'Manrope',sans-serif; }
-    .faq-q:hover { color: #fff; }
-    .faq-q.open { color: #fff; }
-    .faq-icon { width: 22px; height: 22px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; color: rgba(255,255,255,0.45); transition: all 0.25s cubic-bezier(0.22,1,0.36,1); line-height: 1; }
-    .faq-q.open .faq-icon { border-color: rgba(107,140,95,0.5); color: #7fa870; transform: rotate(45deg); }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1); }
-    .faq-a-inner { padding: 0 0 22px; font-size: 14px; color: rgba(255,255,255,0.44); line-height: 1.72; max-width: 660px; }
-
-    /* ── PROCESS ── */
-    .process-connector { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(107,140,95,0.4), rgba(107,140,95,0.08)); margin-top: 20px; }
-
-    /* ── MISC ── */
-    .label { font-family: 'Manrope',sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
-    .tag { display: inline-flex; align-items: center; gap: 5px; background: rgba(107,140,95,0.1); border: 1px solid rgba(107,140,95,0.22); color: #7fa870; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; font-family: 'Manrope',sans-serif; }
-    .grain-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E"); background-size: 300px 300px; }
-    .invert { filter: brightness(0) invert(1); }
+    /* MISC */
+    .label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+    .tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(107,140,95,0.1); border: 1px solid rgba(107,140,95,0.22); color: var(--green); padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; }
+    .grain { position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E"); background-size: 300px 300px; }
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #000; }
-    ::-webkit-scrollbar-thumb { background: #1c1c1c; border-radius: 3px; }
-    :focus-visible { outline: 2px solid rgba(107,140,95,0.55); outline-offset: 3px; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
+    :focus-visible { outline: 2px solid rgba(107,140,95,0.6); outline-offset: 3px; border-radius: 4px; }
   </style>
 </head>
 <body>
@@ -105,18 +105,20 @@
      NAV
 ══════════════════════════════════════ -->
 <nav id="main-nav">
-  <div style="display:flex;align-items:center;flex:1;gap:32px;">
-    <a href="#" style="display:flex;align-items:center;gap:9px;">
-      <img src="brand_assets/ChatGPT%20Image%20Jun%2024%2C%202026%2C%2012_39_37%20PM.png"
-           alt="" style="width:28px;height:28px;border-radius:50%;object-fit:cover;filter:invert(1);flex-shrink:0;">
-      <img src="brand_assets/nerro-wordmark-transparent.png" alt="Nerro" class="invert" style="height:19px;width:auto;">
+  <div style="display:flex;align-items:center;flex:1;gap:36px;">
+    <!-- Logo: circle icon + wordmark — big and visible on top left -->
+    <a href="#" style="display:flex;align-items:center;gap:11px;flex-shrink:0;">
+      <img src="brand_assets/nerrologofinal.png" alt="Nerro logo"
+           style="width:44px;height:44px;border-radius:50%;object-fit:cover;filter:invert(1);flex-shrink:0;">
+      <img src="brand_assets/nerro-wordmark-transparent.png" alt="Nerro"
+           style="height:24px;width:auto;filter:invert(1);">
     </a>
-    <div style="display:flex;gap:22px;align-items:center;">
-      <a href="#" class="nav-link">Work</a>
-      <a href="#" class="nav-link">Services</a>
-      <a href="#" class="nav-link">Process</a>
-      <a href="#" class="nav-link">Pricing</a>
-      <a href="#" class="nav-link">Blog</a>
+    <div style="display:flex;gap:26px;align-items:center;">
+      <a href="#work"     class="nav-link">Work</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#process"  class="nav-link">Process</a>
+      <a href="#pricing"  class="nav-link">Pricing</a>
+      <a href="#faq"      class="nav-link">FAQ</a>
     </div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;">
@@ -127,229 +129,216 @@
 
 
 <!-- ══════════════════════════════════════
-     HERO
+     HERO — centered like scrunch
 ══════════════════════════════════════ -->
-<section style="position:relative;padding:148px 0 72px;overflow:hidden;">
-  <div class="grain-overlay"></div>
-  <div style="position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:1000px;height:1000px;background:radial-gradient(ellipse at center,rgba(107,140,95,0.09) 0%,transparent 62%);pointer-events:none;"></div>
-  <div style="position:absolute;top:0;right:-80px;width:700px;height:600px;background:radial-gradient(ellipse at top right,rgba(74,103,65,0.07) 0%,transparent 58%);pointer-events:none;"></div>
+<section style="position:relative;padding:160px 32px 0;overflow:hidden;">
+  <div class="grain"></div>
+  <div style="position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:1200px;height:900px;background:radial-gradient(ellipse at center,rgba(107,140,95,0.09) 0%,transparent 60%);pointer-events:none;"></div>
+  <div style="position:absolute;top:0;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse at top right,rgba(74,103,65,0.06) 0%,transparent 60%);pointer-events:none;"></div>
 
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;position:relative;z-index:1;">
-    <div style="max-width:700px;">
-      <div class="reveal" style="margin-bottom:22px;">
-        <span class="tag">✦ Web Design Studio</span>
+  <!-- Text block — centered -->
+  <div style="max-width:860px;margin:0 auto;text-align:center;position:relative;z-index:1;margin-bottom:64px;">
+    <div class="reveal" style="margin-bottom:22px;">
+      <span class="tag">✦ Web Design Studio</span>
+    </div>
+    <h1 class="reveal d1" style="font-size:clamp(54px,6.8vw,92px);line-height:1.01;margin-bottom:28px;">
+      We build websites that<br>make clients
+      <em style="font-style:italic;color:rgba(255,255,255,0.36);"> choose you</em>
+    </h1>
+    <p class="reveal d2" style="font-size:18px;color:rgba(255,255,255,0.46);line-height:1.72;margin:0 auto 36px;max-width:580px;">
+      Custom-designed. Conversion-optimized. Delivered in 14 days.<br>No templates, no bloat — just websites that win clients.
+    </p>
+    <div class="reveal d3" style="display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:32px;">
+      <button class="btn-white">Start Your Project →</button>
+      <button class="btn-ghost">See Our Work</button>
+    </div>
+    <!-- Social proof -->
+    <div class="reveal d4" style="display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:9px;">
+        <div style="display:flex;">
+          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#6B8C5F,#4A6741);border:2px solid #000;"></div>
+          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#777,#444);border:2px solid #000;margin-left:-8px;"></div>
+          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#aaa,#666);border:2px solid #000;margin-left:-8px;"></div>
+        </div>
+        <span style="font-size:12.5px;color:rgba(255,255,255,0.35);"><strong style="color:rgba(255,255,255,0.72);font-weight:700;">50+</strong> businesses launched</span>
       </div>
-
-      <h1 class="reveal d1" style="font-size:clamp(50px,6.2vw,82px);line-height:1.03;margin-bottom:26px;">
-        We build websites that<br>make clients
-        <em style="font-style:italic;color:rgba(255,255,255,0.4);"> choose you</em>
-      </h1>
-
-      <p class="reveal d2" style="font-size:17px;color:rgba(255,255,255,0.5);line-height:1.72;margin:0 0 14px;max-width:600px;font-weight:400;">
-        Custom-designed. Conversion-optimized. Delivered in 14 days.
-      </p>
-      <p class="reveal d2" style="font-size:15px;color:rgba(255,255,255,0.35);line-height:1.7;margin:0 0 38px;max-width:460px;">
-        We build websites from scratch for ambitious small businesses — no templates, no bloat, no excuses.
-      </p>
-
-      <div class="reveal d3" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-        <button class="btn-green">Start Your Project →</button>
-        <button class="btn-ghost">See Our Work</button>
+      <div style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
+      <div style="display:flex;align-items:center;gap:5px;">
+        <span style="color:var(--green);font-size:12px;letter-spacing:1px;">★★★★★</span>
+        <span style="font-size:12.5px;color:rgba(255,255,255,0.35);">5.0 rating</span>
       </div>
+      <div style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
+      <span style="font-size:12.5px;color:rgba(255,255,255,0.35);">⚡ <strong style="color:rgba(255,255,255,0.72);font-weight:700;">14-day</strong> avg. delivery</span>
+    </div>
+  </div>
 
-      <!-- Quick proof bar -->
-      <div class="reveal d4" style="margin-top:44px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;">
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div style="display:flex;">
-            <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#6B8C5F,#4A6741);border:2px solid #000;"></div>
-            <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#888,#555);border:2px solid #000;margin-left:-8px;"></div>
-            <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#C8C4BE,#999);border:2px solid #000;margin-left:-8px;"></div>
+  <!-- Large browser mockup — full width, scrunch-style -->
+  <div class="reveal d4" style="max-width:1200px;margin:0 auto;position:relative;z-index:1;">
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="dot" style="background:#ff5f57;"></div>
+        <div class="dot" style="background:#febc2e;"></div>
+        <div class="dot" style="background:#28c840;"></div>
+        <div class="browser-url">yourclientsite.com</div>
+        <div style="margin-left:auto;display:flex;gap:10px;">
+          <div style="width:14px;height:9px;background:rgba(255,255,255,0.07);border-radius:2px;"></div>
+          <div style="width:14px;height:9px;background:rgba(255,255,255,0.07);border-radius:2px;"></div>
+        </div>
+      </div>
+      <!-- Mockup interior: sidebar + main + stats panel -->
+      <div style="background:#050505;height:540px;display:grid;grid-template-columns:200px 1fr 250px;overflow:hidden;position:relative;">
+
+        <!-- Left sidebar -->
+        <div style="background:#080808;border-right:1px solid rgba(255,255,255,0.045);padding:24px 18px;display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:8px;color:var(--green);font-weight:700;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:12px;opacity:0.8;">Navigation</div>
+          <div style="height:30px;background:rgba(107,140,95,0.14);border-radius:6px;display:flex;align-items:center;padding:0 10px;"><div style="width:52%;height:5px;background:rgba(107,140,95,0.6);border-radius:2px;"></div></div>
+          <div style="height:30px;background:rgba(255,255,255,0.03);border-radius:6px;display:flex;align-items:center;padding:0 10px;"><div style="width:38%;height:5px;background:rgba(255,255,255,0.12);border-radius:2px;"></div></div>
+          <div style="height:30px;background:rgba(255,255,255,0.03);border-radius:6px;display:flex;align-items:center;padding:0 10px;"><div style="width:62%;height:5px;background:rgba(255,255,255,0.12);border-radius:2px;"></div></div>
+          <div style="height:30px;background:rgba(255,255,255,0.03);border-radius:6px;display:flex;align-items:center;padding:0 10px;"><div style="width:45%;height:5px;background:rgba(255,255,255,0.12);border-radius:2px;"></div></div>
+          <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,0.04);">
+            <div style="font-size:7.5px;color:rgba(255,255,255,0.18);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Traffic</div>
+            <div style="display:flex;align-items:flex-end;gap:3px;height:46px;">
+              <div style="flex:1;background:rgba(107,140,95,0.18);border-radius:2px 2px 0 0;height:32%;"></div>
+              <div style="flex:1;background:rgba(107,140,95,0.25);border-radius:2px 2px 0 0;height:48%;"></div>
+              <div style="flex:1;background:rgba(107,140,95,0.22);border-radius:2px 2px 0 0;height:38%;"></div>
+              <div style="flex:1;background:rgba(107,140,95,0.38);border-radius:2px 2px 0 0;height:64%;"></div>
+              <div style="flex:1;background:rgba(107,140,95,0.52);border-radius:2px 2px 0 0;height:80%;"></div>
+              <div style="flex:1;background:rgba(107,140,95,0.75);border-radius:2px 2px 0 0;height:100%;"></div>
+            </div>
           </div>
-          <span style="font-size:12.5px;color:rgba(255,255,255,0.38);"><strong style="color:rgba(255,255,255,0.78);font-weight:700;">50+</strong> businesses launched</span>
         </div>
-        <div style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
-        <div style="display:flex;align-items:center;gap:5px;">
-          <span style="color:#7fa870;font-size:12px;letter-spacing:1px;">★★★★★</span>
-          <span style="font-size:12.5px;color:rgba(255,255,255,0.38);">5.0 rating</span>
+
+        <!-- Main content area -->
+        <div style="padding:44px 48px;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.016) 1px,transparent 1px);background-size:28px 28px;"></div>
+          <div style="position:absolute;top:-60px;right:-60px;width:320px;height:320px;background:radial-gradient(ellipse,rgba(74,103,65,0.14) 0%,transparent 70%);pointer-events:none;"></div>
+          <div style="position:relative;z-index:1;">
+            <div style="font-size:8.5px;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:14px;opacity:0.85;">Interior Design Studio</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:400;line-height:0.94;color:#F5F0EB;margin-bottom:20px;letter-spacing:-0.03em;">Craft<br>meets<br>space</div>
+            <div style="font-size:11.5px;color:rgba(245,240,235,0.38);line-height:1.68;margin-bottom:28px;max-width:260px;">Interiors that feel intentional, calm, and uniquely yours — designed around the way you live.</div>
+            <div style="display:flex;gap:9px;">
+              <div style="background:var(--moss);padding:9px 17px;border-radius:6px;font-size:11px;font-weight:700;color:#fff;">Get in touch</div>
+              <div style="border:1px solid rgba(245,240,235,0.13);padding:9px 15px;border-radius:6px;font-size:11px;color:rgba(245,240,235,0.42);">Our work →</div>
+            </div>
+          </div>
         </div>
-        <div style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
-        <span style="font-size:12.5px;color:rgba(255,255,255,0.38);">⚡ <strong style="color:rgba(255,255,255,0.78);font-weight:700;">14-day</strong> avg. delivery</span>
+
+        <!-- Right metrics panel -->
+        <div style="background:#070707;border-left:1px solid rgba(255,255,255,0.045);padding:24px 20px;display:flex;flex-direction:column;gap:14px;">
+          <div style="font-size:7.5px;color:rgba(255,255,255,0.18);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:2px;">Live Metrics</div>
+          <div style="background:#0c0c0c;border:1px solid rgba(255,255,255,0.055);border-radius:10px;padding:16px;">
+            <div style="font-size:9px;color:rgba(255,255,255,0.28);margin-bottom:5px;">Organic Traffic</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#fff;line-height:1;">+340%</div>
+            <div style="font-size:8.5px;color:var(--green);margin-top:4px;font-weight:700;">↑ Last 90 days</div>
+          </div>
+          <div style="background:#0c0c0c;border:1px solid rgba(255,255,255,0.055);border-radius:10px;padding:16px;">
+            <div style="font-size:9px;color:rgba(255,255,255,0.28);margin-bottom:5px;">Lead Volume</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#fff;line-height:1;">3×</div>
+            <div style="font-size:8.5px;color:var(--green);margin-top:4px;font-weight:700;">↑ Year 1 average</div>
+          </div>
+          <div style="background:rgba(107,140,95,0.07);border:1px solid rgba(107,140,95,0.18);border-radius:10px;padding:16px;margin-top:auto;">
+            <div style="font-size:8.5px;color:var(--green);margin-bottom:6px;font-weight:700;">● SITE LIVE</div>
+            <div style="font-size:9.5px;color:rgba(255,255,255,0.36);line-height:1.55;">Delivered in 14 days from kickoff call</div>
+          </div>
+        </div>
+
+        <!-- Bottom fade -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:64px;background:linear-gradient(to top,rgba(5,5,5,0.96),transparent);pointer-events:none;"></div>
       </div>
     </div>
 
-    <!-- Browser mockup -->
-    <div class="reveal d4" style="margin-top:56px;position:relative;">
-      <div class="browser">
-        <div class="browser-bar">
-          <div class="dot" style="background:#ff5f57;"></div>
-          <div class="dot" style="background:#febc2e;"></div>
-          <div class="dot" style="background:#28c840;"></div>
-          <div class="browser-url">yoursite.com</div>
-          <div style="margin-left:auto;display:flex;gap:10px;padding-right:4px;">
-            <div style="width:13px;height:9px;background:rgba(255,255,255,0.1);border-radius:2px;"></div>
-            <div style="width:13px;height:9px;background:rgba(255,255,255,0.1);border-radius:2px;"></div>
-          </div>
-        </div>
-        <div style="background:#080808;height:480px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;">
-          <div style="padding:52px 44px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(255,255,255,0.05);">
-            <div style="font-size:9.5px;color:var(--juniper);letter-spacing:0.18em;text-transform:uppercase;font-weight:700;margin-bottom:14px;font-family:'Manrope',sans-serif;">Interior Design Studio</div>
-            <h2 style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:400;line-height:0.97;color:#F5F0EB;margin:0 0 18px;letter-spacing:-0.03em;">Craft<br>meets<br>space</h2>
-            <p style="font-size:12.5px;color:rgba(245,240,235,0.42);line-height:1.7;font-family:'Manrope',sans-serif;margin:0 0 28px;max-width:240px;">Interiors that feel intentional, calm, and uniquely yours.</p>
-            <div style="display:flex;gap:9px;">
-              <div style="background:var(--moss);padding:9px 17px;border-radius:5px;font-size:11.5px;font-weight:700;color:#fff;font-family:'Manrope',sans-serif;">Get in touch</div>
-              <div style="border:1px solid rgba(245,240,235,0.16);padding:9px 16px;border-radius:5px;font-size:11.5px;color:rgba(245,240,235,0.48);font-family:'Manrope',sans-serif;">Our work →</div>
-            </div>
-          </div>
-          <div style="position:relative;background:linear-gradient(145deg,#141f14 0%,#0a0a0a 100%);overflow:hidden;">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(74,103,65,0.2) 0%,rgba(8,8,8,0.7) 100%);"></div>
-            <!-- Grid overlay texture -->
-            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:28px 28px;"></div>
-            <div style="position:absolute;bottom:22px;left:22px;background:rgba(0,0,0,0.72);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:13px 17px;min-width:126px;">
-              <div style="font-size:25px;font-family:'Cormorant Garamond',serif;color:#fff;font-weight:400;line-height:1;">+340%</div>
-              <div style="font-size:9.5px;color:rgba(255,255,255,0.42);font-family:'Manrope',sans-serif;margin-top:3px;letter-spacing:0.04em;">Organic traffic</div>
-            </div>
-            <div style="position:absolute;top:22px;right:22px;background:rgba(74,103,65,0.18);backdrop-filter:blur(8px);border:1px solid rgba(107,140,95,0.28);border-radius:7px;padding:7px 11px;">
-              <div style="font-size:9.5px;color:#7fa870;font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:0.08em;">● LIVE</div>
-            </div>
-          </div>
-          <div style="position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 100%);pointer-events:none;grid-column:1/-1;"></div>
-        </div>
-      </div>
-      <!-- Floating card -->
-      <div style="position:absolute;right:-14px;top:52px;background:#141414;border:1px solid rgba(255,255,255,0.1);border-radius:11px;padding:15px 19px;min-width:148px;box-shadow:0 8px 36px rgba(0,0,0,0.55);">
-        <div style="font-size:9.5px;color:rgba(255,255,255,0.32);font-weight:700;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:5px;font-family:'Manrope',sans-serif;">Avg. Delivery</div>
-        <div style="font-size:25px;font-family:'Cormorant Garamond',serif;color:#fff;font-weight:400;line-height:1.1;">14 days</div>
-        <div style="font-size:10.5px;color:var(--juniper);margin-top:3px;font-family:'Manrope',sans-serif;font-weight:700;">from kickoff to live</div>
-      </div>
+    <!-- Floating card - delivery stat -->
+    <div style="position:absolute;right:20px;top:60px;background:#141414;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 20px;min-width:148px;box-shadow:0 8px 40px rgba(0,0,0,0.6);z-index:10;">
+      <div style="font-size:8.5px;color:rgba(255,255,255,0.28);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;">Avg. Delivery</div>
+      <div style="font-size:26px;font-family:'Cormorant Garamond',serif;color:#fff;font-weight:400;line-height:1.1;">14 days</div>
+      <div style="font-size:10.5px;color:var(--juniper);margin-top:4px;font-weight:700;">from kickoff to live</div>
     </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     MARQUEE TICKER
+     MARQUEE
 ══════════════════════════════════════ -->
-<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;overflow:hidden;background:#000;">
-  <div class="marquee-track" style="gap:0;">
-    <!-- Repeated twice for seamless loop -->
+<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;overflow:hidden;background:#000;margin-top:60px;">
+  <div class="marquee-track">
     <div style="display:flex;gap:0;white-space:nowrap;">
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Custom Design</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Conversion Strategy</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">14-Day Delivery</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">SEO Foundation</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Mobile First</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">CMS Included</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">You Own It All</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Custom Design</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Conversion Strategy</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">14-Day Delivery</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">SEO Foundation</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Mobile First</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">CMS Included</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
-      <span style="padding:0 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">You Own It All</span>
-      <span style="color:rgba(107,140,95,0.5);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">Custom Design</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">Conversion Optimized</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">14-Day Delivery</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">SEO Foundation</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">Mobile First</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">CMS Included</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">You Own Everything</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">Custom Design</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">Conversion Optimized</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">14-Day Delivery</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">SEO Foundation</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">Mobile First</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">CMS Included</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
+      <span style="padding:0 30px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">You Own Everything</span>
+      <span style="color:rgba(107,140,95,0.42);font-size:11px;">✦</span>
     </div>
   </div>
 </div>
 
 
 <!-- ══════════════════════════════════════
-     SELECTED WORK (Portfolio)
+     BIG STAT SECTION (scrunch 364% style)
 ══════════════════════════════════════ -->
-<section style="padding:96px 0;">
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
-    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;gap:20px;flex-wrap:wrap;">
-      <div>
-        <span class="label" style="display:block;margin-bottom:14px;">Selected Work</span>
-        <h2 style="font-size:clamp(36px,4vw,54px);line-height:1.06;">
-          Work we're<br>
-          <em style="font-style:italic;color:rgba(255,255,255,0.38);">proud of</em>
-        </h2>
-      </div>
-      <a href="#" style="font-size:13px;color:rgba(255,255,255,0.38);font-weight:600;display:flex;align-items:center;gap:6px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">View all projects →</a>
-    </div>
+<section style="padding:120px 0;border-bottom:1px solid var(--border);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1000px;height:600px;background:radial-gradient(ellipse at center,rgba(74,103,65,0.07) 0%,transparent 65%);pointer-events:none;"></div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:1;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;">
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
-
-      <!-- Project 1 -->
-      <div class="port-card reveal d1">
-        <div style="overflow:hidden;height:220px;background:linear-gradient(135deg,#0d1a0d,#1a2a1a);">
-          <div class="port-thumb" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(160deg,rgba(74,103,65,0.3) 0%,rgba(8,8,8,0.85) 100%);position:relative;">
-            <div style="position:absolute;top:20px;left:20px;right:20px;">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:#F5F0EB;line-height:1;letter-spacing:-0.02em;">Lumière</div>
-              <div style="font-size:9px;color:rgba(245,240,235,0.45);font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:4px;">Interior Design</div>
-            </div>
-            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:24px 24px;"></div>
-          </div>
+      <div class="reveal">
+        <span class="label" style="display:block;margin-bottom:20px;">Average Client Result</span>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(90px,11vw,148px);font-weight:300;line-height:0.88;color:#fff;letter-spacing:-0.04em;margin-bottom:22px;">
+          340<span style="font-size:0.55em;color:rgba(255,255,255,0.5);">%</span>
         </div>
-        <div style="padding:22px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:'Manrope',sans-serif;">Lumière Studio</span>
-            <span style="font-size:10.5px;color:rgba(255,255,255,0.25);font-family:'Manrope',sans-serif;">2025</span>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center;">
-            <div style="background:rgba(107,140,95,0.12);border:1px solid rgba(107,140,95,0.2);border-radius:5px;padding:5px 10px;font-size:11px;color:#7fa870;font-weight:700;font-family:'Manrope',sans-serif;">+340% traffic</div>
-            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:5px 10px;font-size:11px;color:rgba(255,255,255,0.38);font-family:'Manrope',sans-serif;">Interior Design</div>
-          </div>
-        </div>
+        <p style="font-size:20px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.5);line-height:1.5;margin:0;max-width:360px;">increase in organic traffic within 90 days of launch.</p>
       </div>
 
-      <!-- Project 2 -->
-      <div class="port-card reveal d2">
-        <div style="overflow:hidden;height:220px;background:linear-gradient(135deg,#1a1a0e,#2a2a14);">
-          <div class="port-thumb" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(160deg,rgba(200,196,190,0.12) 0%,rgba(8,8,8,0.88) 100%);position:relative;">
-            <div style="position:absolute;top:20px;left:20px;right:20px;">
-              <div style="font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;color:#F5F0EB;letter-spacing:0.06em;">GROVE</div>
-              <div style="font-size:9px;color:rgba(245,240,235,0.45);font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:4px;">Architecture</div>
+      <div class="reveal d2">
+        <p style="font-size:16px;color:rgba(255,255,255,0.42);line-height:1.82;margin:0 0 36px;">We don't just build websites — we build client acquisition machines. Every pixel, heading, and call-to-action is designed with one goal: turning visitors into paying clients.</p>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:3px;height:44px;background:linear-gradient(to bottom,var(--green),rgba(107,140,95,0));border-radius:2px;flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:24px;font-family:'Cormorant Garamond',serif;color:#fff;font-weight:400;line-height:1.1;">3× lead volume</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:3px;">Average across all client sites in year 1</div>
             </div>
-            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(200,196,190,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,196,190,0.03) 1px,transparent 1px);background-size:32px 32px;"></div>
           </div>
-        </div>
-        <div style="padding:22px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:'Manrope',sans-serif;">Grove Architects</span>
-            <span style="font-size:10.5px;color:rgba(255,255,255,0.25);font-family:'Manrope',sans-serif;">2025</span>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center;">
-            <div style="background:rgba(107,140,95,0.12);border:1px solid rgba(107,140,95,0.2);border-radius:5px;padding:5px 10px;font-size:11px;color:#7fa870;font-weight:700;font-family:'Manrope',sans-serif;">+220% leads</div>
-            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:5px 10px;font-size:11px;color:rgba(255,255,255,0.38);font-family:'Manrope',sans-serif;">Architecture</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="port-card reveal d3">
-        <div style="overflow:hidden;height:220px;background:linear-gradient(135deg,#0e1a1a,#0a1414);">
-          <div class="port-thumb" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(160deg,rgba(45,100,100,0.25) 0%,rgba(8,8,8,0.88) 100%);position:relative;">
-            <div style="position:absolute;top:20px;left:20px;right:20px;">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;color:#F5F0EB;font-style:italic;letter-spacing:-0.01em;">Vela</div>
-              <div style="font-size:9px;color:rgba(245,240,235,0.45);font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:4px;">Wellness Studio</div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:3px;height:44px;background:linear-gradient(to bottom,var(--green),rgba(107,140,95,0));border-radius:2px;flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:24px;font-family:'Cormorant Garamond',serif;color:#fff;font-weight:400;line-height:1.1;">100% satisfaction</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:3px;">Based on post-project client surveys</div>
             </div>
-            <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:20px 20px;"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:3px;height:44px;background:linear-gradient(to bottom,var(--green),rgba(107,140,95,0));border-radius:2px;flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:24px;font-family:'Cormorant Garamond',serif;color:#fff;font-weight:400;line-height:1.1;">14 days avg. delivery</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:3px;">From kickoff call to live website</div>
+            </div>
           </div>
         </div>
-        <div style="padding:22px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:'Manrope',sans-serif;">Vela Studio</span>
-            <span style="font-size:10.5px;color:rgba(255,255,255,0.25);font-family:'Manrope',sans-serif;">2025</span>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center;">
-            <div style="background:rgba(107,140,95,0.12);border:1px solid rgba(107,140,95,0.2);border-radius:5px;padding:5px 10px;font-size:11px;color:#7fa870;font-weight:700;font-family:'Manrope',sans-serif;">+180% bookings</div>
-            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:5px 10px;font-size:11px;color:rgba(255,255,255,0.38);font-family:'Manrope',sans-serif;">Wellness</div>
-          </div>
+        <div style="margin-top:36px;">
+          <button class="btn-green">Start Your Project →</button>
         </div>
       </div>
     </div>
@@ -358,44 +347,170 @@
 
 
 <!-- ══════════════════════════════════════
-     APPROACH
+     PORTFOLIO
 ══════════════════════════════════════ -->
-<section style="padding:96px 0;border-top:1px solid var(--border);position:relative;overflow:hidden;">
-  <div style="position:absolute;top:50%;left:0;width:500px;height:500px;background:radial-gradient(ellipse at left,rgba(74,103,65,0.06) 0%,transparent 70%);transform:translateY(-50%);pointer-events:none;"></div>
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:start;">
+<section id="work" style="padding:100px 0;border-bottom:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;gap:20px;flex-wrap:wrap;">
+      <div>
+        <span class="label" style="display:block;margin-bottom:14px;">Selected Work</span>
+        <h2 style="font-size:clamp(38px,4.5vw,58px);line-height:1.06;">
+          Work we're<br>
+          <em style="font-style:italic;color:rgba(255,255,255,0.32);">proud of</em>
+        </h2>
+      </div>
+      <a href="#" style="font-size:13px;color:rgba(255,255,255,0.34);font-weight:600;display:flex;align-items:center;gap:6px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.34)'">View all projects →</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+
+      <!-- Project 1 -->
+      <div class="reveal d1" style="background:#0a0a0a;border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color 0.25s,transform 0.35s cubic-bezier(0.22,1,0.36,1);" onmouseover="this.style.borderColor='rgba(107,140,95,0.3)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.transform='translateY(0)'">
+        <div style="height:224px;background:linear-gradient(135deg,#0d1a0d,#1a2a1a);overflow:hidden;position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(74,103,65,0.3) 0%,rgba(8,8,8,0.86) 100%);"></div>
+          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:24px 24px;"></div>
+          <div style="position:absolute;top:24px;left:24px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:400;color:#F5F0EB;line-height:1;letter-spacing:-0.02em;">Lumière</div>
+            <div style="font-size:8.5px;color:rgba(245,240,235,0.42);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:6px;">Interior Design</div>
+          </div>
+        </div>
+        <div style="padding:22px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);">Lumière Studio</span>
+            <span style="font-size:10.5px;color:rgba(255,255,255,0.2);">2025</span>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <div style="background:rgba(107,140,95,0.12);border:1px solid rgba(107,140,95,0.2);border-radius:5px;padding:5px 10px;font-size:11px;color:var(--green);font-weight:700;">+340% traffic</div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:5px;padding:5px 10px;font-size:11px;color:rgba(255,255,255,0.32);">Interior Design</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="reveal d2" style="background:#0a0a0a;border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color 0.25s,transform 0.35s cubic-bezier(0.22,1,0.36,1);" onmouseover="this.style.borderColor='rgba(107,140,95,0.3)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.transform='translateY(0)'">
+        <div style="height:224px;background:linear-gradient(135deg,#1a1a0e,#2a2a14);overflow:hidden;position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(200,196,190,0.1) 0%,rgba(8,8,8,0.88) 100%);"></div>
+          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(200,196,190,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(200,196,190,0.022) 1px,transparent 1px);background-size:32px 32px;"></div>
+          <div style="position:absolute;top:24px;left:24px;">
+            <div style="font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;color:#F5F0EB;letter-spacing:0.06em;">GROVE</div>
+            <div style="font-size:8.5px;color:rgba(245,240,235,0.42);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:6px;">Architecture</div>
+          </div>
+        </div>
+        <div style="padding:22px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);">Grove Architects</span>
+            <span style="font-size:10.5px;color:rgba(255,255,255,0.2);">2025</span>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <div style="background:rgba(107,140,95,0.12);border:1px solid rgba(107,140,95,0.2);border-radius:5px;padding:5px 10px;font-size:11px;color:var(--green);font-weight:700;">+220% leads</div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:5px;padding:5px 10px;font-size:11px;color:rgba(255,255,255,0.32);">Architecture</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="reveal d3" style="background:#0a0a0a;border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color 0.25s,transform 0.35s cubic-bezier(0.22,1,0.36,1);" onmouseover="this.style.borderColor='rgba(107,140,95,0.3)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.transform='translateY(0)'">
+        <div style="height:224px;background:linear-gradient(135deg,#0e1a1a,#0a1414);overflow:hidden;position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,100,100,0.22) 0%,rgba(8,8,8,0.88) 100%);"></div>
+          <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.022) 1px,transparent 1px);background-size:20px 20px;"></div>
+          <div style="position:absolute;top:24px;left:24px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:#F5F0EB;font-style:italic;letter-spacing:-0.01em;">Vela</div>
+            <div style="font-size:8.5px;color:rgba(245,240,235,0.42);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:6px;">Wellness Studio</div>
+          </div>
+        </div>
+        <div style="padding:22px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);">Vela Studio</span>
+            <span style="font-size:10.5px;color:rgba(255,255,255,0.2);">2025</span>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <div style="background:rgba(107,140,95,0.12);border:1px solid rgba(107,140,95,0.2);border-radius:5px;padding:5px 10px;font-size:11px;color:var(--green);font-weight:700;">+180% bookings</div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:5px;padding:5px 10px;font-size:11px;color:rgba(255,255,255,0.32);">Wellness</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     APPROACH — feature section (scrunch style: text left, visual right)
+══════════════════════════════════════ -->
+<section style="padding:100px 0;border-bottom:1px solid var(--border);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:50%;left:0;width:480px;height:480px;background:radial-gradient(ellipse at left,rgba(74,103,65,0.06) 0%,transparent 70%);transform:translateY(-50%);pointer-events:none;"></div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+
       <div class="reveal">
         <span class="label" style="display:block;margin-bottom:18px;">Our Approach</span>
-        <h2 style="font-size:clamp(38px,4.2vw,58px);line-height:1.07;margin-bottom:22px;">
+        <h2 style="font-size:clamp(38px,4.5vw,60px);line-height:1.05;margin-bottom:26px;">
           We obsess, so your<br>clients
-          <em style="font-style:italic;color:rgba(255,255,255,0.35);"> can't look away</em>
+          <em style="font-style:italic;color:rgba(255,255,255,0.3);"> can't look away</em>
         </h2>
-        <p style="font-size:15.5px;color:rgba(255,255,255,0.42);line-height:1.74;margin:0 0 12px;max-width:400px;">
-          Most agencies hand you a template and invoice you for "custom work." We build from scratch, every time.
-        </p>
-        <p style="font-size:15.5px;color:rgba(255,255,255,0.42);line-height:1.74;margin:0 0 34px;max-width:400px;">
-          On deadline. Without the back-and-forth that kills momentum.
-        </p>
-        <a href="#" style="display:inline-flex;align-items:center;gap:8px;color:var(--juniper);font-size:14px;font-weight:700;transition:gap 0.2s;" onmouseover="this.style.gap='14px'" onmouseout="this.style.gap='8px'">See how we work →</a>
+        <p style="font-size:15.5px;color:rgba(255,255,255,0.4);line-height:1.8;margin:0 0 12px;max-width:420px;">Most agencies hand you a template and invoice for "custom work." We build from scratch, every time.</p>
+        <p style="font-size:15.5px;color:rgba(255,255,255,0.4);line-height:1.8;margin:0 0 36px;max-width:420px;">On deadline. Without the back-and-forth that kills momentum.</p>
+
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:36px;height:36px;border-radius:9px;background:rgba(107,140,95,0.1);border:1px solid rgba(107,140,95,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:rgba(107,140,95,0.85);">✦</div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">Custom design, always</div><div style="font-size:13px;color:rgba(255,255,255,0.36);line-height:1.65;">No templates. Designed from scratch to reflect your brand exactly.</div></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:36px;height:36px;border-radius:9px;background:rgba(107,140,95,0.1);border:1px solid rgba(107,140,95,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:rgba(107,140,95,0.85);">◎</div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">Conversion-first layout</div><div style="font-size:13px;color:rgba(255,255,255,0.36);line-height:1.65;">Every element earns its place — designed to turn visitors into enquiries.</div></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:36px;height:36px;border-radius:9px;background:rgba(107,140,95,0.1);border:1px solid rgba(107,140,95,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:rgba(107,140,95,0.85);">⚡</div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">14 days, no exceptions</div><div style="font-size:13px;color:rgba(255,255,255,0.36);line-height:1.65;">Scoped, structured, and delivered. A live website, ready to win work.</div></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:36px;height:36px;border-radius:9px;background:rgba(107,140,95,0.1);border:1px solid rgba(107,140,95,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:rgba(107,140,95,0.85);">∞</div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">You own everything</div><div style="font-size:13px;color:rgba(255,255,255,0.36);line-height:1.65;">Code, assets, domain — yours outright. No lock-in, no recurring platform fees.</div></div>
+          </div>
+        </div>
       </div>
+
+      <!-- Visual: process card -->
       <div class="reveal d2">
-        <div style="padding:24px 0;border-top:1px solid var(--border);display:flex;gap:18px;align-items:flex-start;">
-          <div style="width:36px;height:36px;border-radius:8px;background:rgba(107,140,95,0.1);border:1px solid rgba(107,140,95,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:rgba(107,140,95,0.9);">✦</div>
-          <div><h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 4px;color:#fff;">Custom design, always</h3><p style="font-size:13px;color:rgba(255,255,255,0.38);margin:0;line-height:1.65;">No templates. No drag-and-drop. Designed from scratch to reflect your brand exactly.</p></div>
-        </div>
-        <div style="padding:24px 0;border-top:1px solid var(--border);display:flex;gap:18px;align-items:flex-start;">
-          <div style="width:36px;height:36px;border-radius:8px;background:rgba(107,140,95,0.1);border:1px solid rgba(107,140,95,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:rgba(107,140,95,0.9);">◎</div>
-          <div><h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 4px;color:#fff;">Conversion-first layout</h3><p style="font-size:13px;color:rgba(255,255,255,0.38);margin:0;line-height:1.65;">Every element earns its place. We design with one goal: turning visitors into enquiries.</p></div>
-        </div>
-        <div style="padding:24px 0;border-top:1px solid var(--border);display:flex;gap:18px;align-items:flex-start;">
-          <div style="width:36px;height:36px;border-radius:8px;background:rgba(107,140,95,0.1);border:1px solid rgba(107,140,95,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:rgba(107,140,95,0.9);">⚡</div>
-          <div><h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 4px;color:#fff;">14 days, no exceptions</h3><p style="font-size:13px;color:rgba(255,255,255,0.38);margin:0;line-height:1.65;">Scoped, structured, and delivered. Not a rough draft — a live website, ready to win work.</p></div>
-        </div>
-        <div style="padding:24px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;gap:18px;align-items:flex-start;">
-          <div style="width:36px;height:36px;border-radius:8px;background:rgba(107,140,95,0.1);border:1px solid rgba(107,140,95,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:rgba(107,140,95,0.9);">∞</div>
-          <div><h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 4px;color:#fff;">You own everything</h3><p style="font-size:13px;color:rgba(255,255,255,0.38);margin:0;line-height:1.65;">Code, assets, domain — it's yours outright. No lock-in, no recurring platform fees.</p></div>
+        <div style="background:#090909;border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;">
+          <div style="padding:28px 28px 20px;border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="font-size:8.5px;color:var(--green);font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;opacity:0.85;">Project Timeline</div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:32px;height:32px;border-radius:50%;background:rgba(107,140,95,0.18);border:1px solid rgba(107,140,95,0.38);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--green);flex-shrink:0;">01</div>
+                <div style="flex:1;height:3px;background:linear-gradient(90deg,var(--green),rgba(107,140,95,0.15));border-radius:2px;"></div>
+                <span style="font-size:10px;color:rgba(255,255,255,0.28);white-space:nowrap;">Days 1–2 · Discovery</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:32px;height:32px;border-radius:50%;background:rgba(107,140,95,0.18);border:1px solid rgba(107,140,95,0.38);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--green);flex-shrink:0;">02</div>
+                <div style="flex:1;height:3px;background:linear-gradient(90deg,var(--green),rgba(107,140,95,0.15));border-radius:2px;"></div>
+                <span style="font-size:10px;color:rgba(255,255,255,0.28);white-space:nowrap;">Days 3–7 · Design</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:32px;height:32px;border-radius:50%;background:rgba(107,140,95,0.18);border:1px solid rgba(107,140,95,0.38);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--green);flex-shrink:0;">03</div>
+                <div style="flex:1;height:3px;background:linear-gradient(90deg,var(--green),rgba(107,140,95,0.15));border-radius:2px;"></div>
+                <span style="font-size:10px;color:rgba(255,255,255,0.28);white-space:nowrap;">Days 8–13 · Build</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:32px;height:32px;border-radius:50%;background:rgba(107,140,95,0.3);border:1px solid rgba(107,140,95,0.65);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--green);flex-shrink:0;">04</div>
+                <div style="flex:1;height:3px;background:var(--green);border-radius:2px;"></div>
+                <span style="font-size:10px;color:var(--green);font-weight:700;white-space:nowrap;">Day 14 · Live ●</span>
+              </div>
+            </div>
+          </div>
+          <!-- Outcome pill -->
+          <div style="margin:20px 28px 28px;background:rgba(107,140,95,0.07);border:1px solid rgba(107,140,95,0.18);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:18px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:36px;color:#fff;font-weight:400;line-height:1;flex-shrink:0;">+340%</div>
+            <div>
+              <div style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:3px;">organic traffic</div>
+              <div style="font-size:11.5px;color:rgba(255,255,255,0.28);">First 90 days post-launch</div>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -404,59 +519,50 @@
 <!-- ══════════════════════════════════════
      PROCESS TIMELINE
 ══════════════════════════════════════ -->
-<section style="padding:96px 0;border-top:1px solid var(--border);">
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
-    <div class="reveal" style="margin-bottom:56px;">
+<section id="process" style="padding:100px 0;border-bottom:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div class="reveal" style="margin-bottom:60px;">
       <span class="label" style="display:block;margin-bottom:14px;">The Process</span>
-      <h2 style="font-size:clamp(36px,4vw,54px);line-height:1.07;max-width:520px;">
-        From first call to live website —
-        <em style="font-style:italic;color:rgba(255,255,255,0.38);"> in 14 days</em>
+      <h2 style="font-size:clamp(36px,4.2vw,56px);line-height:1.06;max-width:520px;">
+        From first call to live site —
+        <em style="font-style:italic;color:rgba(255,255,255,0.35);"> in 14 days</em>
       </h2>
     </div>
-
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;">
-
-      <!-- Step 1 -->
-      <div class="reveal d1" style="padding-right:24px;padding-bottom:0;position:relative;">
-        <div style="display:flex;align-items:center;gap:0;margin-bottom:24px;">
-          <div style="width:40px;height:40px;border-radius:50%;background:rgba(107,140,95,0.15);border:1px solid rgba(107,140,95,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:800;color:#7fa870;font-family:'Manrope',sans-serif;">01</div>
-          <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(107,140,95,0.4),rgba(107,140,95,0.08));margin-left:12px;"></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+      <div class="reveal d1" style="padding-right:28px;">
+        <div style="display:flex;align-items:center;margin-bottom:26px;">
+          <div style="width:42px;height:42px;border-radius:50%;background:rgba(107,140,95,0.15);border:1px solid rgba(107,140,95,0.35);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--green);flex-shrink:0;">01</div>
+          <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(107,140,95,0.4),rgba(107,140,95,0.06));margin-left:12px;"></div>
         </div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.28);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-family:'Manrope',sans-serif;margin-bottom:8px;">Days 1–2</div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;margin:0 0 8px;color:#fff;letter-spacing:0;">Discovery & Strategy</h3>
-        <p style="font-size:12.5px;color:rgba(255,255,255,0.38);margin:0;line-height:1.65;">Brand deep-dive, competitor audit, site strategy brief. We map exactly what we're building and why.</p>
+        <div style="font-size:9.5px;color:rgba(255,255,255,0.26);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:9px;">Days 1–2</div>
+        <h3 style="font-size:15px;font-weight:700;margin:0 0 9px;color:#fff;font-family:'Manrope',sans-serif;">Discovery & Strategy</h3>
+        <p style="font-size:12.5px;color:rgba(255,255,255,0.36);margin:0;line-height:1.68;">Brand deep-dive, competitor audit, site strategy brief.</p>
       </div>
-
-      <!-- Step 2 -->
-      <div class="reveal d2" style="padding:0 24px;position:relative;">
-        <div style="display:flex;align-items:center;margin-bottom:24px;">
-          <div style="width:40px;height:40px;border-radius:50%;background:rgba(107,140,95,0.15);border:1px solid rgba(107,140,95,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:800;color:#7fa870;font-family:'Manrope',sans-serif;">02</div>
-          <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(107,140,95,0.4),rgba(107,140,95,0.08));margin-left:12px;"></div>
+      <div class="reveal d2" style="padding:0 28px;">
+        <div style="display:flex;align-items:center;margin-bottom:26px;">
+          <div style="width:42px;height:42px;border-radius:50%;background:rgba(107,140,95,0.15);border:1px solid rgba(107,140,95,0.35);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--green);flex-shrink:0;">02</div>
+          <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(107,140,95,0.4),rgba(107,140,95,0.06));margin-left:12px;"></div>
         </div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.28);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-family:'Manrope',sans-serif;margin-bottom:8px;">Days 3–7</div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;margin:0 0 8px;color:#fff;letter-spacing:0;">Design</h3>
-        <p style="font-size:12.5px;color:rgba(255,255,255,0.38);margin:0;line-height:1.65;">High-fidelity mockups in Figma. You review, request edits, and approve. Two structured revision rounds.</p>
+        <div style="font-size:9.5px;color:rgba(255,255,255,0.26);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:9px;">Days 3–7</div>
+        <h3 style="font-size:15px;font-weight:700;margin:0 0 9px;color:#fff;font-family:'Manrope',sans-serif;">Design</h3>
+        <p style="font-size:12.5px;color:rgba(255,255,255,0.36);margin:0;line-height:1.68;">High-fidelity mockups in Figma. Two structured revision rounds.</p>
       </div>
-
-      <!-- Step 3 -->
-      <div class="reveal d3" style="padding:0 24px;position:relative;">
-        <div style="display:flex;align-items:center;margin-bottom:24px;">
-          <div style="width:40px;height:40px;border-radius:50%;background:rgba(107,140,95,0.15);border:1px solid rgba(107,140,95,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:800;color:#7fa870;font-family:'Manrope',sans-serif;">03</div>
-          <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(107,140,95,0.4),rgba(107,140,95,0.08));margin-left:12px;"></div>
+      <div class="reveal d3" style="padding:0 28px;">
+        <div style="display:flex;align-items:center;margin-bottom:26px;">
+          <div style="width:42px;height:42px;border-radius:50%;background:rgba(107,140,95,0.15);border:1px solid rgba(107,140,95,0.35);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--green);flex-shrink:0;">03</div>
+          <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(107,140,95,0.4),rgba(107,140,95,0.06));margin-left:12px;"></div>
         </div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.28);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-family:'Manrope',sans-serif;margin-bottom:8px;">Days 8–13</div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;margin:0 0 8px;color:#fff;letter-spacing:0;">Build</h3>
-        <p style="font-size:12.5px;color:rgba(255,255,255,0.38);margin:0;line-height:1.65;">Hand-coded, performance-optimized, SEO-configured. Built to load fast and rank well from day one.</p>
+        <div style="font-size:9.5px;color:rgba(255,255,255,0.26);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:9px;">Days 8–13</div>
+        <h3 style="font-size:15px;font-weight:700;margin:0 0 9px;color:#fff;font-family:'Manrope',sans-serif;">Build</h3>
+        <p style="font-size:12.5px;color:rgba(255,255,255,0.36);margin:0;line-height:1.68;">Hand-coded, performance-optimized, SEO-configured from day one.</p>
       </div>
-
-      <!-- Step 4 -->
-      <div class="reveal d4" style="padding-left:24px;">
-        <div style="display:flex;align-items:center;margin-bottom:24px;">
-          <div style="width:40px;height:40px;border-radius:50%;background:rgba(107,140,95,0.25);border:1px solid rgba(107,140,95,0.55);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:800;color:#7fa870;font-family:'Manrope',sans-serif;">04</div>
+      <div class="reveal d4" style="padding-left:28px;">
+        <div style="display:flex;align-items:center;margin-bottom:26px;">
+          <div style="width:42px;height:42px;border-radius:50%;background:rgba(107,140,95,0.25);border:1px solid rgba(107,140,95,0.55);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--green);flex-shrink:0;">04</div>
         </div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.28);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-family:'Manrope',sans-serif;margin-bottom:8px;">Day 14</div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;margin:0 0 8px;color:#fff;letter-spacing:0;">Launch</h3>
-        <p style="font-size:12.5px;color:rgba(255,255,255,0.38);margin:0;line-height:1.65;">Domain, hosting, CMS handover. You get a walkthrough video and launch support. You're live.</p>
+        <div style="font-size:9.5px;color:rgba(255,255,255,0.26);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:9px;">Day 14</div>
+        <h3 style="font-size:15px;font-weight:700;margin:0 0 9px;color:#fff;font-family:'Manrope',sans-serif;">Launch</h3>
+        <p style="font-size:12.5px;color:rgba(255,255,255,0.36);margin:0;line-height:1.68;">Domain, hosting, CMS handover. Walkthrough video. You're live.</p>
       </div>
     </div>
   </div>
@@ -466,146 +572,107 @@
 <!-- ══════════════════════════════════════
      SERVICES
 ══════════════════════════════════════ -->
-<section style="padding:96px 0;border-top:1px solid var(--border);">
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
+<section id="services" style="padding:100px 0;border-bottom:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
     <div class="reveal" style="margin-bottom:52px;">
       <span class="label" style="display:block;margin-bottom:14px;">Services</span>
-      <h2 style="font-size:clamp(36px,4vw,54px);line-height:1.07;max-width:500px;">
+      <h2 style="font-size:clamp(38px,4.5vw,58px);line-height:1.06;max-width:520px;">
         Everything you need.
-        <em style="font-style:italic;color:rgba(255,255,255,0.38);"> Nothing you don't.</em>
+        <em style="font-style:italic;color:rgba(255,255,255,0.32);"> Nothing you don't.</em>
       </h2>
-      <p style="font-size:15px;color:rgba(255,255,255,0.38);margin:14px 0 0;max-width:480px;line-height:1.7;">We're not a full-service agency with 40 departments. We're a focused studio that does websites exceptionally well.</p>
+      <p style="font-size:15px;color:rgba(255,255,255,0.36);margin:16px 0 0;max-width:460px;line-height:1.72;">We're a focused studio that does websites exceptionally well.</p>
     </div>
-
     <div class="service-grid">
+
       <div class="service-cell reveal d1">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:26px;font-family:'Manrope',sans-serif;">Performance ↗</div>
-        <div style="background:rgba(107,140,95,0.07);border:1px solid rgba(107,140,95,0.13);border-radius:9px;padding:17px;margin-bottom:18px;">
-          <div style="font-size:10px;color:rgba(255,255,255,0.26);font-family:'Manrope',sans-serif;margin-bottom:7px;">PageSpeed Score</div>
-          <div style="display:flex;align-items:center;gap:7px;">
-            <span style="font-size:32px;font-family:'Cormorant Garamond',serif;font-weight:400;color:#fff;line-height:1;" data-counter="98">98</span>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:26px;">Performance ↗</div>
+        <div style="background:rgba(107,140,95,0.07);border:1px solid rgba(107,140,95,0.13);border-radius:10px;padding:18px;margin-bottom:20px;">
+          <div style="font-size:9.5px;color:rgba(255,255,255,0.24);margin-bottom:8px;">PageSpeed Score</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:34px;font-family:'Cormorant Garamond',serif;font-weight:400;color:#fff;line-height:1;" data-counter="98">98</span>
             <span style="width:6px;height:6px;border-radius:50%;background:#4cd963;display:inline-block;"></span>
-            <span style="font-size:11px;color:#4cd963;font-family:'Manrope',sans-serif;font-weight:600;">Excellent</span>
+            <span style="font-size:11px;color:#4cd963;font-weight:700;">Excellent</span>
           </div>
-          <div style="margin-top:11px;background:rgba(255,255,255,0.05);border-radius:3px;height:3px;overflow:hidden;">
-            <div class="perf-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#4A6741,#7fa870);border-radius:3px;transition:width 1.2s cubic-bezier(0.22,1,0.36,1);"></div>
+          <div style="margin-top:12px;background:rgba(255,255,255,0.05);border-radius:3px;height:3px;overflow:hidden;">
+            <div class="perf-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#4A6741,var(--green));border-radius:3px;transition:width 1.2s cubic-bezier(0.22,1,0.36,1);"></div>
           </div>
         </div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;">Speed-optimized builds</h3>
-        <p style="font-size:12px;color:rgba(255,255,255,0.36);margin:0;line-height:1.62;">Hand-coded for 90+ PageSpeed scores. Faster sites rank higher and convert better.</p>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;font-family:'Manrope',sans-serif;">Speed-optimized builds</h3>
+        <p style="font-size:12px;color:rgba(255,255,255,0.34);margin:0;line-height:1.65;">Hand-coded for 90+ PageSpeed scores. Faster sites rank higher and convert better.</p>
       </div>
 
       <div class="service-cell reveal d2">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:26px;font-family:'Manrope',sans-serif;">SEO ↗</div>
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:17px;margin-bottom:18px;">
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:26px;">SEO ↗</div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px;margin-bottom:20px;">
           <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11.5px;color:rgba(255,255,255,0.36);font-family:'Manrope',sans-serif;">Structured Data</span><span style="color:#4cd963;font-size:11.5px;font-weight:700;">✓</span></div>
-            <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11.5px;color:rgba(255,255,255,0.36);font-family:'Manrope',sans-serif;">Meta Tags</span><span style="color:#4cd963;font-size:11.5px;font-weight:700;">✓</span></div>
-            <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11.5px;color:rgba(255,255,255,0.36);font-family:'Manrope',sans-serif;">Sitemap &amp; Robots</span><span style="color:#4cd963;font-size:11.5px;font-weight:700;">✓</span></div>
-            <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11.5px;color:rgba(255,255,255,0.36);font-family:'Manrope',sans-serif;">Core Web Vitals</span><span style="color:#4cd963;font-size:11.5px;font-weight:700;">✓</span></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11.5px;color:rgba(255,255,255,0.34);">Structured Data</span><span style="color:#4cd963;font-size:11.5px;font-weight:700;">✓</span></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11.5px;color:rgba(255,255,255,0.34);">Meta Tags</span><span style="color:#4cd963;font-size:11.5px;font-weight:700;">✓</span></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11.5px;color:rgba(255,255,255,0.34);">Sitemap &amp; Robots</span><span style="color:#4cd963;font-size:11.5px;font-weight:700;">✓</span></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11.5px;color:rgba(255,255,255,0.34);">Core Web Vitals</span><span style="color:#4cd963;font-size:11.5px;font-weight:700;">✓</span></div>
           </div>
         </div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;">Built to be found</h3>
-        <p style="font-size:12px;color:rgba(255,255,255,0.36);margin:0;line-height:1.62;">On-page SEO baked in from day one. Every site launches ready to rank.</p>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;font-family:'Manrope',sans-serif;">Built to be found</h3>
+        <p style="font-size:12px;color:rgba(255,255,255,0.34);margin:0;line-height:1.65;">On-page SEO baked in from day one. Every site launches ready to rank.</p>
       </div>
 
       <div class="service-cell reveal d3">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:26px;font-family:'Manrope',sans-serif;">Mobile-First ↗</div>
-        <div style="display:flex;justify-content:center;margin-bottom:18px;padding:10px 0;">
-          <div style="width:72px;height:124px;border:2px solid rgba(255,255,255,0.12);border-radius:14px;background:#060606;overflow:hidden;padding:6px 6px 10px;">
-            <div style="width:20px;height:3px;background:rgba(255,255,255,0.14);border-radius:2px;margin:0 auto 6px;"></div>
-            <div style="background:rgba(107,140,95,0.35);border-radius:3px;height:26px;margin-bottom:4px;"></div>
-            <div style="background:rgba(255,255,255,0.05);border-radius:3px;height:6px;margin-bottom:3px;"></div>
-            <div style="background:rgba(255,255,255,0.05);border-radius:3px;height:6px;width:70%;margin-bottom:3px;"></div>
-            <div style="background:rgba(74,103,65,0.65);border-radius:3px;height:13px;margin-top:7px;"></div>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:26px;">Mobile-First ↗</div>
+        <div style="display:flex;justify-content:center;margin-bottom:20px;padding:10px 0;">
+          <div style="width:74px;height:128px;border:2px solid rgba(255,255,255,0.1);border-radius:14px;background:#060606;overflow:hidden;padding:6px 6px 10px;">
+            <div style="width:20px;height:3px;background:rgba(255,255,255,0.12);border-radius:2px;margin:0 auto 7px;"></div>
+            <div style="background:rgba(107,140,95,0.35);border-radius:3px;height:28px;margin-bottom:4px;"></div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:3px;height:6px;margin-bottom:3px;"></div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:3px;height:6px;width:70%;margin-bottom:3px;"></div>
+            <div style="background:rgba(74,103,65,0.65);border-radius:3px;height:14px;margin-top:8px;"></div>
           </div>
         </div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;">Perfect on every screen</h3>
-        <p style="font-size:12px;color:rgba(255,255,255,0.36);margin:0;line-height:1.62;">Over 60% of visitors are on mobile. We design mobile-first, desktop second.</p>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;font-family:'Manrope',sans-serif;">Perfect on every screen</h3>
+        <p style="font-size:12px;color:rgba(255,255,255,0.34);margin:0;line-height:1.65;">Over 60% of visitors are on mobile. We design mobile-first, desktop second.</p>
       </div>
 
       <div class="service-cell reveal d1">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:26px;font-family:'Manrope',sans-serif;">CMS ↗</div>
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:15px;margin-bottom:18px;">
-          <div style="font-size:10px;color:rgba(255,255,255,0.24);margin-bottom:8px;font-family:'Manrope',sans-serif;">Edit your content</div>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:26px;">CMS ↗</div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;margin-bottom:20px;">
+          <div style="font-size:9.5px;color:rgba(255,255,255,0.22);margin-bottom:9px;">Edit your content</div>
           <div style="background:rgba(255,255,255,0.05);border-radius:3px;height:6px;margin-bottom:4px;"></div>
           <div style="background:rgba(255,255,255,0.05);border-radius:3px;height:6px;width:80%;margin-bottom:10px;"></div>
-          <div style="background:rgba(107,140,95,0.5);border-radius:5px;height:24px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;">Save changes</span></div>
+          <div style="background:rgba(107,140,95,0.5);border-radius:5px;height:26px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;color:#fff;font-weight:700;">Save changes</span></div>
         </div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;">Edit without a developer</h3>
-        <p style="font-size:12px;color:rgba(255,255,255,0.36);margin:0;line-height:1.62;">A simple CMS so you can update copy, images, and blog posts without touching code.</p>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;font-family:'Manrope',sans-serif;">Edit without a developer</h3>
+        <p style="font-size:12px;color:rgba(255,255,255,0.34);margin:0;line-height:1.65;">A simple CMS so you can update copy, images, and blog posts without touching code.</p>
       </div>
 
       <div class="service-cell reveal d2">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:26px;font-family:'Manrope',sans-serif;">Analytics ↗</div>
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:15px;margin-bottom:18px;height:86px;display:flex;align-items:flex-end;gap:4px;overflow:hidden;">
-          <div style="flex:1;background:rgba(107,140,95,0.22);border-radius:3px 3px 0 0;height:38%;"></div>
-          <div style="flex:1;background:rgba(107,140,95,0.32);border-radius:3px 3px 0 0;height:52%;"></div>
-          <div style="flex:1;background:rgba(107,140,95,0.26);border-radius:3px 3px 0 0;height:40%;"></div>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:26px;">Analytics ↗</div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;margin-bottom:20px;height:88px;display:flex;align-items:flex-end;gap:4px;overflow:hidden;">
+          <div style="flex:1;background:rgba(107,140,95,0.2);border-radius:3px 3px 0 0;height:38%;"></div>
+          <div style="flex:1;background:rgba(107,140,95,0.3);border-radius:3px 3px 0 0;height:52%;"></div>
+          <div style="flex:1;background:rgba(107,140,95,0.24);border-radius:3px 3px 0 0;height:40%;"></div>
           <div style="flex:1;background:rgba(107,140,95,0.42);border-radius:3px 3px 0 0;height:68%;"></div>
           <div style="flex:1;background:rgba(107,140,95,0.36);border-radius:3px 3px 0 0;height:50%;"></div>
-          <div style="flex:1;background:rgba(107,140,95,0.55);border-radius:3px 3px 0 0;height:80%;"></div>
-          <div style="flex:1;background:rgba(107,140,95,0.75);border-radius:3px 3px 0 0;height:100%;"></div>
+          <div style="flex:1;background:rgba(107,140,95,0.56);border-radius:3px 3px 0 0;height:80%;"></div>
+          <div style="flex:1;background:rgba(107,140,95,0.78);border-radius:3px 3px 0 0;height:100%;"></div>
         </div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;">Know what's working</h3>
-        <p style="font-size:12px;color:rgba(255,255,255,0.36);margin:0;line-height:1.62;">Analytics built in from launch — track traffic, leads, and what's driving growth.</p>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;font-family:'Manrope',sans-serif;">Know what's working</h3>
+        <p style="font-size:12px;color:rgba(255,255,255,0.34);margin:0;line-height:1.65;">Analytics built in from launch — track traffic, leads, and what's driving growth.</p>
       </div>
 
       <div class="service-cell reveal d3">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:26px;font-family:'Manrope',sans-serif;">Support ↗</div>
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:14px;margin-bottom:18px;">
-          <div style="display:flex;gap:7px;margin-bottom:7px;">
-            <div style="width:20px;height:20px;border-radius:50%;background:rgba(107,140,95,0.35);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;">N</div>
-            <div style="background:rgba(107,140,95,0.12);border:1px solid rgba(107,140,95,0.18);border-radius:0 6px 6px 6px;padding:6px 9px;font-size:10.5px;color:rgba(255,255,255,0.52);font-family:'Manrope',sans-serif;line-height:1.4;">How's the site performing?</div>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:26px;">Support ↗</div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;margin-bottom:20px;">
+          <div style="display:flex;gap:8px;margin-bottom:8px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(107,140,95,0.35);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:700;">N</div>
+            <div style="background:rgba(107,140,95,0.1);border:1px solid rgba(107,140,95,0.18);border-radius:0 7px 7px 7px;padding:7px 10px;font-size:10.5px;color:rgba(255,255,255,0.5);line-height:1.4;">How's the site performing?</div>
           </div>
-          <div style="display:flex;gap:7px;justify-content:flex-end;">
-            <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px 0 6px 6px;padding:6px 9px;font-size:10.5px;color:rgba(255,255,255,0.52);font-family:'Manrope',sans-serif;line-height:1.4;">Leads are up 3×!</div>
-            <div style="width:20px;height:20px;border-radius:50%;background:rgba(200,196,190,0.22);flex-shrink:0;"></div>
+          <div style="display:flex;gap:8px;justify-content:flex-end;">
+            <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:7px 0 7px 7px;padding:7px 10px;font-size:10.5px;color:rgba(255,255,255,0.5);line-height:1.4;">Leads are up 3×!</div>
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(200,196,190,0.2);flex-shrink:0;"></div>
           </div>
         </div>
-        <h3 style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;">Ongoing partnership</h3>
-        <p style="font-size:12px;color:rgba(255,255,255,0.36);margin:0;line-height:1.62;">We don't disappear after launch. Monthly support plans for updates, edits, and strategy.</p>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 5px;color:#fff;font-family:'Manrope',sans-serif;">Ongoing partnership</h3>
+        <p style="font-size:12px;color:rgba(255,255,255,0.34);margin:0;line-height:1.65;">Monthly support plans for updates, edits, and growth strategy. We don't disappear at launch.</p>
       </div>
-    </div>
-  </div>
-</section>
 
-
-<!-- ══════════════════════════════════════
-     RESULTS
-══════════════════════════════════════ -->
-<section style="padding:96px 0;border-top:1px solid var(--border);position:relative;overflow:hidden;">
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse at center,rgba(74,103,65,0.07) 0%,transparent 65%);pointer-events:none;"></div>
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
-    <div class="reveal" style="margin-bottom:52px;">
-      <span class="label" style="display:block;margin-bottom:14px;">Client Outcomes</span>
-      <h2 style="font-size:clamp(36px,4vw,54px);line-height:1.07;">
-        Built to convert.
-        <em style="font-style:italic;color:rgba(255,255,255,0.38);"> Here's the proof.</em>
-      </h2>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
-      <div class="result-card reveal d1">
-        <div style="font-size:52px;font-family:'Cormorant Garamond',serif;font-weight:300;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:-0.03em;">+<span data-counter="340">340</span>%</div>
-        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:5px;font-family:'Manrope',sans-serif;">Average traffic lift</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,0.32);line-height:1.55;font-family:'Manrope',sans-serif;">In the first 90 days post-launch</div>
-      </div>
-      <div class="result-card reveal d2">
-        <div style="font-size:52px;font-family:'Cormorant Garamond',serif;font-weight:300;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:-0.03em;"><span data-counter="3">3</span>×</div>
-        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:5px;font-family:'Manrope',sans-serif;">Lead volume increase</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,0.32);line-height:1.55;font-family:'Manrope',sans-serif;">Average across all client sites in year 1</div>
-      </div>
-      <div class="result-card reveal d3">
-        <div style="font-size:52px;font-family:'Cormorant Garamond',serif;font-weight:300;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:-0.03em;"><span data-counter="14">14</span>d</div>
-        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:5px;font-family:'Manrope',sans-serif;">Average delivery</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,0.32);line-height:1.55;font-family:'Manrope',sans-serif;">From kickoff call to live site</div>
-      </div>
-      <div class="result-card reveal d4">
-        <div style="font-size:52px;font-family:'Cormorant Garamond',serif;font-weight:300;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:-0.03em;"><span data-counter="100">100</span>%</div>
-        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:5px;font-family:'Manrope',sans-serif;">Client satisfaction</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,0.32);line-height:1.55;font-family:'Manrope',sans-serif;">Based on post-project surveys</div>
-      </div>
     </div>
   </div>
 </section>
@@ -614,64 +681,65 @@
 <!-- ══════════════════════════════════════
      TESTIMONIALS
 ══════════════════════════════════════ -->
-<section style="padding:96px 0;border-top:1px solid var(--border);">
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
+<section style="padding:100px 0;border-bottom:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
     <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;flex-wrap:wrap;gap:20px;">
       <div>
         <span class="label" style="display:block;margin-bottom:14px;">Client Stories</span>
-        <h2 style="font-size:clamp(34px,3.5vw,50px);line-height:1.07;">
+        <h2 style="font-size:clamp(34px,4vw,52px);line-height:1.06;">
           Our clients don't just recommend us.
-          <br><em style="font-style:italic;color:rgba(255,255,255,0.35);">They send their friends.</em>
+          <br><em style="font-style:italic;color:rgba(255,255,255,0.32);">They send their friends.</em>
         </h2>
       </div>
-      <a href="#" style="font-size:13px;color:rgba(255,255,255,0.36);font-weight:600;white-space:nowrap;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.36)'">Read all stories →</a>
+      <a href="#" style="font-size:13px;color:rgba(255,255,255,0.34);font-weight:600;white-space:nowrap;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.34)'">Read all stories →</a>
     </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
       <div class="testi-card reveal d1">
-        <div style="color:#7fa870;font-size:12px;margin-bottom:14px;letter-spacing:2px;">★★★★★</div>
-        <p style="font-size:16px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.78);line-height:1.65;margin:0 0 22px;">"Within 60 days of launching, we had 3 new clients who found us through Google. Nerro didn't build a website — they built a client acquisition machine."</p>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4A6741,#6B8C5F);flex-shrink:0;"></div>
+        <div style="color:var(--green);font-size:12px;margin-bottom:15px;letter-spacing:2px;">★★★★★</div>
+        <p style="font-size:16px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.75);line-height:1.68;margin:0 0 24px;">"Within 60 days of launching, we had 3 new clients who found us through Google. Nerro didn't build a website — they built a client acquisition machine."</p>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:15px;">
+          <div style="width:33px;height:33px;border-radius:50%;background:linear-gradient(135deg,#4A6741,#6B8C5F);flex-shrink:0;"></div>
           <div>
-            <div style="font-size:12.5px;font-weight:700;color:#fff;font-family:'Manrope',sans-serif;">Sarah M.</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.32);font-family:'Manrope',sans-serif;">Interior Designer</div>
+            <div style="font-size:12.5px;font-weight:700;color:#fff;">Sarah M.</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.3);">Interior Designer</div>
           </div>
         </div>
-        <div style="background:rgba(107,140,95,0.08);border:1px solid rgba(107,140,95,0.16);border-radius:6px;padding:9px 12px;">
-          <span style="font-size:11px;color:#7fa870;font-weight:700;font-family:'Manrope',sans-serif;">+340% organic traffic in 90 days</span>
+        <div style="background:rgba(107,140,95,0.08);border:1px solid rgba(107,140,95,0.16);border-radius:7px;padding:10px 13px;">
+          <span style="font-size:11px;color:var(--green);font-weight:700;">+340% organic traffic in 90 days</span>
         </div>
       </div>
 
       <div class="testi-card reveal d2">
-        <div style="color:#7fa870;font-size:12px;margin-bottom:14px;letter-spacing:2px;">★★★★★</div>
-        <p style="font-size:16px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.78);line-height:1.65;margin:0 0 22px;">"I'd been quoted 8 weeks and $12k by another agency. Nerro delivered a better site in 14 days. My enquiry rate has been up 220% ever since."</p>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#666,#444);flex-shrink:0;"></div>
+        <div style="color:var(--green);font-size:12px;margin-bottom:15px;letter-spacing:2px;">★★★★★</div>
+        <p style="font-size:16px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.75);line-height:1.68;margin:0 0 24px;">"I'd been quoted 8 weeks and $12k by another agency. Nerro delivered a better site in 14 days. My enquiry rate has been up 220% ever since."</p>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:15px;">
+          <div style="width:33px;height:33px;border-radius:50%;background:linear-gradient(135deg,#666,#444);flex-shrink:0;"></div>
           <div>
-            <div style="font-size:12.5px;font-weight:700;color:#fff;font-family:'Manrope',sans-serif;">James R.</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.32);font-family:'Manrope',sans-serif;">Landscape Architect</div>
+            <div style="font-size:12.5px;font-weight:700;color:#fff;">James R.</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.3);">Landscape Architect</div>
           </div>
         </div>
-        <div style="background:rgba(107,140,95,0.08);border:1px solid rgba(107,140,95,0.16);border-radius:6px;padding:9px 12px;">
-          <span style="font-size:11px;color:#7fa870;font-weight:700;font-family:'Manrope',sans-serif;">+220% enquiries since launch</span>
+        <div style="background:rgba(107,140,95,0.08);border:1px solid rgba(107,140,95,0.16);border-radius:7px;padding:10px 13px;">
+          <span style="font-size:11px;color:var(--green);font-weight:700;">+220% enquiries since launch</span>
         </div>
       </div>
 
       <div class="testi-card reveal d3">
-        <div style="color:#7fa870;font-size:12px;margin-bottom:14px;letter-spacing:2px;">★★★★★</div>
-        <p style="font-size:16px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.78);line-height:1.65;margin:0 0 22px;">"Six months in, 40% of my new clients say they found me online first. I genuinely don't understand why I waited so long. The ROI is unreal."</p>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#C8C4BE,#999);flex-shrink:0;"></div>
+        <div style="color:var(--green);font-size:12px;margin-bottom:15px;letter-spacing:2px;">★★★★★</div>
+        <p style="font-size:16px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.75);line-height:1.68;margin:0 0 24px;">"Six months in, 40% of my new clients say they found me online first. I genuinely don't understand why I waited so long. The ROI is unreal."</p>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:15px;">
+          <div style="width:33px;height:33px;border-radius:50%;background:linear-gradient(135deg,#bbb,#888);flex-shrink:0;"></div>
           <div>
-            <div style="font-size:12.5px;font-weight:700;color:#fff;font-family:'Manrope',sans-serif;">Priya K.</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.32);font-family:'Manrope',sans-serif;">Boutique Owner</div>
+            <div style="font-size:12.5px;font-weight:700;color:#fff;">Priya K.</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.3);">Boutique Owner</div>
           </div>
         </div>
-        <div style="background:rgba(107,140,95,0.08);border:1px solid rgba(107,140,95,0.16);border-radius:6px;padding:9px 12px;">
-          <span style="font-size:11px;color:#7fa870;font-weight:700;font-family:'Manrope',sans-serif;">40% of new clients now from organic search</span>
+        <div style="background:rgba(107,140,95,0.08);border:1px solid rgba(107,140,95,0.16);border-radius:7px;padding:10px 13px;">
+          <span style="font-size:11px;color:var(--green);font-weight:700;">40% of new clients from organic search</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -680,51 +748,51 @@
 <!-- ══════════════════════════════════════
      PRICING
 ══════════════════════════════════════ -->
-<section style="padding:96px 0;border-top:1px solid var(--border);">
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
+<section id="pricing" style="padding:100px 0;border-bottom:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
     <div class="reveal" style="margin-bottom:52px;">
       <span class="label" style="display:block;margin-bottom:14px;">Investment</span>
-      <h2 style="font-size:clamp(36px,4vw,54px);line-height:1.07;max-width:520px;">
+      <h2 style="font-size:clamp(38px,4.5vw,58px);line-height:1.06;max-width:520px;">
         Simple, honest pricing.
-        <em style="font-style:italic;color:rgba(255,255,255,0.38);"> No surprises.</em>
+        <em style="font-style:italic;color:rgba(255,255,255,0.32);"> No surprises.</em>
       </h2>
-      <p style="font-size:15px;color:rgba(255,255,255,0.38);margin:14px 0 0;max-width:460px;line-height:1.7;">Flat project fees. No hourly billing. No scope creep invoices. One investment for a website that works for years.</p>
+      <p style="font-size:15px;color:rgba(255,255,255,0.36);margin:16px 0 0;max-width:460px;line-height:1.72;">Flat project fees. No hourly billing. No scope creep invoices. One investment for a website that works for years.</p>
     </div>
-
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;">
+
       <div class="price-card reveal d1">
-        <div style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-bottom:20px;font-family:'Manrope',sans-serif;">Starter</div>
-        <div style="font-size:52px;font-family:'Cormorant Garamond',serif;font-weight:400;color:#fff;line-height:1;margin-bottom:4px;">$2,997</div>
-        <div style="font-size:12.5px;color:rgba(255,255,255,0.35);font-family:'Manrope',sans-serif;margin-bottom:24px;">One-time project fee</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>Up to 5 pages</div>
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>Custom design (no templates)</div>
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>SEO foundation</div>
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>CMS setup</div>
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>14-day delivery</div>
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:22px;">Starter</div>
+        <div style="font-size:54px;font-family:'Cormorant Garamond',serif;font-weight:400;color:#fff;line-height:1;margin-bottom:5px;">$2,997</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,0.32);margin-bottom:26px;">One-time project fee</div>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:30px;">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>Up to 5 pages</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>Custom design (no templates)</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>SEO foundation</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>CMS setup</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>14-day delivery</div>
         </div>
         <button class="btn-ghost" style="width:100%;justify-content:center;font-size:13px;padding:11px 0;">Get started →</button>
       </div>
 
       <div class="price-card featured reveal d2">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-          <div style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.32);font-family:'Manrope',sans-serif;">Growth</div>
-          <div style="background:rgba(107,140,95,0.18);border:1px solid rgba(107,140,95,0.3);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;color:#7fa870;letter-spacing:0.08em;text-transform:uppercase;font-family:'Manrope',sans-serif;">Most Popular</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);">Growth</div>
+          <div style="background:rgba(107,140,95,0.18);border:1px solid rgba(107,140,95,0.3);border-radius:20px;padding:3px 11px;font-size:10px;font-weight:700;color:var(--green);letter-spacing:0.08em;text-transform:uppercase;">Most Popular</div>
         </div>
-        <div style="font-size:52px;font-family:'Cormorant Garamond',serif;font-weight:400;color:#fff;line-height:1;margin-bottom:4px;">$4,997</div>
-        <div style="font-size:12.5px;color:rgba(255,255,255,0.35);font-family:'Manrope',sans-serif;margin-bottom:24px;">One-time project fee</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>Up to 12 pages</div>
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>Everything in Starter</div>
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>Blog / case studies</div>
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>Advanced CMS + forms</div>
-          <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,0.6);font-family:'Manrope',sans-serif;"><span style="color:#7fa870;font-weight:700;font-size:12px;">✓</span>1 month priority support</div>
+        <div style="font-size:54px;font-family:'Cormorant Garamond',serif;font-weight:400;color:#fff;line-height:1;margin-bottom:5px;">$4,997</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,0.32);margin-bottom:26px;">One-time project fee</div>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:30px;">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>Up to 12 pages</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>Everything in Starter</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>Blog / case studies</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>Advanced CMS + forms</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.58);"><span style="color:var(--green);font-weight:700;font-size:12px;">✓</span>1 month priority support</div>
         </div>
         <button class="btn-green" style="width:100%;justify-content:center;font-size:13px;padding:11px 0;">Start Your Project →</button>
       </div>
-    </div>
 
-    <p class="reveal" style="margin-top:22px;font-size:12.5px;color:rgba(255,255,255,0.28);font-family:'Manrope',sans-serif;">Not sure which fits? <a href="#" style="color:rgba(107,140,95,0.8);font-weight:600;" onmouseover="this.style.color='#7fa870'" onmouseout="this.style.color='rgba(107,140,95,0.8)'">Book a free call</a> — we'll tell you exactly what you need.</p>
+    </div>
+    <p class="reveal" style="margin-top:22px;font-size:12.5px;color:rgba(255,255,255,0.26);">Not sure which fits? <a href="#" style="color:rgba(107,140,95,0.8);font-weight:600;" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='rgba(107,140,95,0.8)'">Book a free call</a> — we'll tell you exactly what you need.</p>
   </div>
 </section>
 
@@ -732,66 +800,53 @@
 <!-- ══════════════════════════════════════
      FAQ
 ══════════════════════════════════════ -->
-<section style="padding:96px 0;border-top:1px solid var(--border);">
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
+<section id="faq" style="padding:100px 0;border-bottom:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
     <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;">
+
       <div class="reveal">
         <span class="label" style="display:block;margin-bottom:14px;">FAQ</span>
-        <h2 style="font-size:clamp(34px,3.5vw,48px);line-height:1.1;margin-bottom:20px;">
+        <h2 style="font-size:clamp(34px,3.8vw,50px);line-height:1.1;margin-bottom:22px;">
           Questions<br>we get
-          <em style="font-style:italic;color:rgba(255,255,255,0.38);"> a lot</em>
+          <em style="font-style:italic;color:rgba(255,255,255,0.32);"> a lot</em>
         </h2>
-        <p style="font-size:14.5px;color:rgba(255,255,255,0.38);line-height:1.7;margin:0 0 28px;">Still unsure? We're happy to talk through any of this on a free discovery call.</p>
+        <p style="font-size:14.5px;color:rgba(255,255,255,0.36);line-height:1.72;margin:0 0 30px;">Still unsure? We're happy to talk through this on a free discovery call.</p>
         <button class="btn-green" style="font-size:13px;padding:10px 20px;">Book a free call →</button>
       </div>
 
       <div class="reveal d2">
         <div class="faq-item">
-          <div class="faq-q open" onclick="toggleFaq(this)">
-            How long does the whole process take?
-            <span class="faq-icon">+</span>
-          </div>
+          <div class="faq-q open" onclick="toggleFaq(this)">How long does the whole process take?<span class="faq-icon">+</span></div>
           <div class="faq-a" style="max-height:200px;">
-            <div class="faq-a-inner">Most projects launch in exactly 14 days. We've built this timeline through hundreds of projects — it's structured, not rushed. Day 1–2: strategy. Day 3–7: design. Day 8–13: build. Day 14: you're live.</div>
+            <div class="faq-a-inner">Most projects launch in exactly 14 days. Day 1–2: strategy. Day 3–7: design. Day 8–13: build. Day 14: you're live.</div>
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            What do I need to provide?
-            <span class="faq-icon">+</span>
-          </div>
+          <div class="faq-q" onclick="toggleFaq(this)">What do I need to provide?<span class="faq-icon">+</span></div>
           <div class="faq-a">
             <div class="faq-a-inner">Your branding (logo, colors if you have them), any existing content you want to keep, and answers to our onboarding questionnaire. We handle the rest — design, copy guidance, images, build, and launch.</div>
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            Do I own the website after?
-            <span class="faq-icon">+</span>
-          </div>
+          <div class="faq-q" onclick="toggleFaq(this)">Do I own the website after?<span class="faq-icon">+</span></div>
           <div class="faq-a">
-            <div class="faq-a-inner">Completely. The code, the design assets, the domain — all yours. No lock-in, no monthly platform fees, no strings attached. You can host it wherever you like.</div>
+            <div class="faq-a-inner">Completely. The code, the design assets, the domain — all yours. No lock-in, no monthly platform fees, no strings attached.</div>
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            What if I'm not happy with the design?
-            <span class="faq-icon">+</span>
-          </div>
+          <div class="faq-q" onclick="toggleFaq(this)">What if I'm not happy with the design?<span class="faq-icon">+</span></div>
           <div class="faq-a">
-            <div class="faq-a-inner">We include two structured revision rounds in the design phase. In practice, clients love what we produce. But if something isn't right, we iterate until it is — we don't invoice for revisions.</div>
+            <div class="faq-a-inner">We include two structured revision rounds in the design phase. If something isn't right, we iterate until it is — we don't invoice for revisions.</div>
           </div>
         </div>
         <div class="faq-item" style="border-bottom:none;">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            Do you offer ongoing support after launch?
-            <span class="faq-icon">+</span>
-          </div>
+          <div class="faq-q" onclick="toggleFaq(this)">Do you offer ongoing support after launch?<span class="faq-icon">+</span></div>
           <div class="faq-a">
-            <div class="faq-a-inner">Yes. We offer monthly support retainers for content updates, design tweaks, performance monitoring, and growth strategy. Most clients stay with us long-term — our average relationship is 3 years.</div>
+            <div class="faq-a-inner">Yes. Monthly support retainers for content updates, design tweaks, performance monitoring, and growth strategy. Our average client relationship is 3 years.</div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -800,32 +855,20 @@
 <!-- ══════════════════════════════════════
      TRUSTED BY
 ══════════════════════════════════════ -->
-<section style="padding:72px 0;border-top:1px solid var(--border);">
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
-    <div class="reveal" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;">
-      <div>
-        <span class="label" style="display:block;margin-bottom:7px;">Clients</span>
-        <h2 style="font-size:24px;font-weight:400;color:#fff;">Trusted by growing businesses</h2>
-      </div>
-      <button class="btn-ghost" style="font-size:12.5px;padding:9px 18px;">Start your project →</button>
+<section style="padding:72px 0;border-bottom:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div class="reveal" style="margin-bottom:30px;">
+      <span class="label">Trusted by growing businesses</span>
     </div>
-    <div class="reveal" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;">
-      <span style="background:rgba(107,140,95,0.14);border:1px solid rgba(107,140,95,0.26);color:#7fa870;padding:5px 13px;border-radius:20px;font-size:11px;font-weight:700;font-family:'Manrope',sans-serif;">Interior Design</span>
-      <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.38);padding:5px 13px;border-radius:20px;font-size:11px;font-weight:500;font-family:'Manrope',sans-serif;">Architecture</span>
-      <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.38);padding:5px 13px;border-radius:20px;font-size:11px;font-weight:500;font-family:'Manrope',sans-serif;">Hospitality</span>
-      <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.38);padding:5px 13px;border-radius:20px;font-size:11px;font-weight:500;font-family:'Manrope',sans-serif;">Wellness</span>
-      <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.38);padding:5px 13px;border-radius:20px;font-size:11px;font-weight:500;font-family:'Manrope',sans-serif;">Professional Services</span>
-      <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.38);padding:5px 13px;border-radius:20px;font-size:11px;font-weight:500;font-family:'Manrope',sans-serif;">Retail</span>
-    </div>
-    <div class="reveal" style="border-top:1px solid rgba(255,255,255,0.06);padding-top:26px;display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
-      <span style="font-family:'Cormorant Garamond',serif;font-size:21px;color:rgba(255,255,255,0.18);">Lumière</span>
-      <span style="font-family:'Manrope',sans-serif;font-size:12px;color:rgba(255,255,255,0.18);font-weight:800;letter-spacing:0.1em;">HAUS</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:19px;color:rgba(255,255,255,0.18);font-style:italic;">Vela Studio</span>
-      <span style="font-family:'Manrope',sans-serif;font-size:12px;color:rgba(255,255,255,0.18);font-weight:800;letter-spacing:0.07em;">GROVE</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:19px;color:rgba(255,255,255,0.18);">Soleil</span>
-      <span style="font-family:'Manrope',sans-serif;font-size:12px;color:rgba(255,255,255,0.18);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Marca</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:19px;color:rgba(255,255,255,0.18);">Atelier K</span>
-      <span style="font-family:'Manrope',sans-serif;font-size:11px;color:rgba(255,255,255,0.18);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Thornfield</span>
+    <div class="reveal" style="border-top:1px solid rgba(255,255,255,0.05);padding-top:28px;display:flex;gap:44px;align-items:center;flex-wrap:wrap;">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:rgba(255,255,255,0.16);">Lumière</span>
+      <span style="font-family:'Manrope',sans-serif;font-size:12px;color:rgba(255,255,255,0.16);font-weight:800;letter-spacing:0.1em;">HAUS</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:20px;color:rgba(255,255,255,0.16);font-style:italic;">Vela Studio</span>
+      <span style="font-family:'Manrope',sans-serif;font-size:12px;color:rgba(255,255,255,0.16);font-weight:800;letter-spacing:0.07em;">GROVE</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:20px;color:rgba(255,255,255,0.16);">Soleil</span>
+      <span style="font-family:'Manrope',sans-serif;font-size:12px;color:rgba(255,255,255,0.16);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Marca</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:20px;color:rgba(255,255,255,0.16);">Atelier K</span>
+      <span style="font-family:'Manrope',sans-serif;font-size:11px;color:rgba(255,255,255,0.16);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Thornfield</span>
     </div>
   </div>
 </section>
@@ -834,42 +877,37 @@
 <!-- ══════════════════════════════════════
      CTA
 ══════════════════════════════════════ -->
-<section style="padding:120px 0 100px;position:relative;overflow:hidden;border-top:1px solid var(--border);">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(74,103,65,0.13) 0%,transparent 58%);pointer-events:none;"></div>
-  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(107,140,95,0.22),transparent);"></div>
+<section style="padding:130px 0 110px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 110%,rgba(74,103,65,0.13) 0%,transparent 58%);pointer-events:none;"></div>
+  <div class="grain"></div>
 
-  <div style="max-width:700px;margin:0 auto;padding:0 28px;text-align:center;position:relative;z-index:1;">
-    <div class="reveal" style="display:flex;justify-content:center;margin-bottom:28px;">
-      <div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:center;">
-        <span style="font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:400;color:rgba(255,255,255,0.65);line-height:1;letter-spacing:-0.02em;">N</span>
-      </div>
+  <div style="max-width:720px;margin:0 auto;padding:0 32px;text-align:center;position:relative;z-index:1;">
+    <!-- Logo in CTA -->
+    <div class="reveal" style="display:flex;justify-content:center;margin-bottom:32px;">
+      <img src="brand_assets/nerrologofinal.png" alt="Nerro" style="width:56px;height:56px;border-radius:50%;object-fit:cover;filter:invert(1);opacity:0.7;">
     </div>
 
-    <h2 class="reveal d1" style="font-size:clamp(42px,5.5vw,70px);line-height:1.04;margin-bottom:22px;">
+    <h2 class="reveal d1" style="font-size:clamp(44px,5.8vw,76px);line-height:1.03;margin-bottom:24px;">
       Your next client is<br>
-      <em style="font-style:italic;color:rgba(255,255,255,0.4);">already searching</em>
+      <em style="font-style:italic;color:rgba(255,255,255,0.36);">already searching</em>
     </h2>
-    <p class="reveal d2" style="font-size:17px;color:rgba(255,255,255,0.4);line-height:1.72;margin:0 0 12px;">
-      The only question is whether your website is the one they'll trust.
-    </p>
-    <p class="reveal d2" style="font-size:15px;color:rgba(255,255,255,0.28);line-height:1.7;margin:0 0 40px;">
-      In 30 minutes, you'll know exactly what your new site will look like, what it costs, and how fast we can launch it.
-    </p>
+    <p class="reveal d2" style="font-size:17px;color:rgba(255,255,255,0.4);line-height:1.74;margin:0 0 12px;">The only question is whether your website is the one they'll trust.</p>
+    <p class="reveal d2" style="font-size:15px;color:rgba(255,255,255,0.26);line-height:1.72;margin:0 0 42px;">In 30 minutes, you'll know exactly what your new site will look like, what it costs, and how fast we can launch it.</p>
 
-    <div class="reveal d3" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
-      <button class="btn-green" style="font-size:15px;padding:13px 28px;">Start Your Project →</button>
-      <button class="btn-ghost" style="font-size:15px;padding:13px 26px;">See Our Work</button>
+    <div class="reveal d3" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;">
+      <button class="btn-white" style="font-size:15px;padding:14px 30px;">Start Your Project →</button>
+      <button class="btn-ghost" style="font-size:15px;padding:14px 28px;">See Our Work</button>
     </div>
-    <p class="reveal d4" style="font-size:12px;color:rgba(255,255,255,0.2);margin:0;">Free 30-minute call · No commitment · No sales pressure</p>
+    <p class="reveal d4" style="font-size:12px;color:rgba(255,255,255,0.18);margin:0;">Free 30-minute call · No commitment · No sales pressure</p>
 
-    <div class="reveal d4" style="margin-top:56px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;">
-      <div style="background:rgba(107,140,95,0.18);border:1px solid rgba(107,140,95,0.28);border-radius:6px;padding:7px 13px;font-size:11.5px;color:#7fa870;font-weight:700;font-family:'Manrope',sans-serif;">Discovery Call</div>
-      <span style="color:rgba(255,255,255,0.16);font-size:13px;">+</span>
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:7px 13px;font-size:11.5px;color:rgba(255,255,255,0.36);font-weight:500;font-family:'Manrope',sans-serif;">Design Sprint</div>
-      <span style="color:rgba(255,255,255,0.16);font-size:13px;">+</span>
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:7px 13px;font-size:11.5px;color:rgba(255,255,255,0.36);font-weight:500;font-family:'Manrope',sans-serif;">Build</div>
-      <span style="color:rgba(255,255,255,0.16);font-size:13px;">+</span>
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:7px 13px;font-size:11.5px;color:rgba(255,255,255,0.36);font-weight:500;font-family:'Manrope',sans-serif;">Launch 🚀</div>
+    <div class="reveal d4" style="margin-top:60px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:22px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;">
+      <div style="background:rgba(107,140,95,0.18);border:1px solid rgba(107,140,95,0.28);border-radius:7px;padding:8px 14px;font-size:11.5px;color:var(--green);font-weight:700;">Discovery Call</div>
+      <span style="color:rgba(255,255,255,0.15);font-size:14px;">+</span>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 14px;font-size:11.5px;color:rgba(255,255,255,0.34);font-weight:500;">Design Sprint</div>
+      <span style="color:rgba(255,255,255,0.15);font-size:14px;">+</span>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 14px;font-size:11.5px;color:rgba(255,255,255,0.34);font-weight:500;">Build</div>
+      <span style="color:rgba(255,255,255,0.15);font-size:14px;">+</span>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 14px;font-size:11.5px;color:rgba(255,255,255,0.34);font-weight:500;">Launch 🚀</div>
     </div>
   </div>
 </section>
@@ -878,121 +916,121 @@
 <!-- ══════════════════════════════════════
      FOOTER
 ══════════════════════════════════════ -->
-<footer style="border-top:1px solid var(--border);padding:60px 0 40px;">
-  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;">
+<footer style="padding:64px 0 40px;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:52px;">
+
       <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-          <img src="brand_assets/ChatGPT%20Image%20Jun%2024%2C%202026%2C%2012_39_37%20PM.png" alt="" style="width:22px;height:22px;border-radius:50%;object-fit:cover;filter:invert(1);flex-shrink:0;">
-          <img src="brand_assets/nerro-wordmark-transparent.png" alt="Nerro" class="invert" style="height:17px;width:auto;">
+        <!-- Footer logo: icon + wordmark -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <img src="brand_assets/nerrologofinal.png" alt="Nerro" style="width:34px;height:34px;border-radius:50%;object-fit:cover;filter:invert(1);flex-shrink:0;">
+          <img src="brand_assets/nerro-wordmark-transparent.png" alt="Nerro" style="height:19px;width:auto;filter:invert(1);">
         </div>
-        <p style="font-size:12.5px;color:rgba(255,255,255,0.28);line-height:1.72;margin:0 0 18px;max-width:220px;font-family:'Manrope',sans-serif;">Modern. Clear. Built to Convert. Web design for small businesses that refuse to blend in.</p>
+        <p style="font-size:12.5px;color:rgba(255,255,255,0.26);line-height:1.74;margin:0 0 20px;max-width:220px;">Modern. Clear. Built to Convert. Web design for small businesses that refuse to blend in.</p>
         <div style="display:flex;gap:7px;">
-          <a href="#" style="width:29px;height:29px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.36);font-size:11.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">in</a>
-          <a href="#" style="width:29px;height:29px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.36);font-size:11.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">ig</a>
-          <a href="#" style="width:29px;height:29px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.36);font-size:11.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">X</a>
+          <a href="#" style="width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.34);font-size:11.5px;font-weight:700;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">in</a>
+          <a href="#" style="width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.34);font-size:11.5px;font-weight:700;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">ig</a>
+          <a href="#" style="width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.34);font-size:11.5px;font-weight:700;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">X</a>
         </div>
       </div>
+
       <div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.11em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:14px;font-family:'Manrope',sans-serif;">Services</div>
-        <div style="display:flex;flex-direction:column;gap:9px;">
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Web Design</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Development</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">SEO</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Copywriting</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Maintenance</a>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:16px;">Services</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Web Design</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Development</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">SEO</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Copywriting</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Maintenance</a>
         </div>
       </div>
+
       <div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.11em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:14px;font-family:'Manrope',sans-serif;">Company</div>
-        <div style="display:flex;flex-direction:column;gap:9px;">
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">About</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Work</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Pricing</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Blog</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Careers</a>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:16px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">About</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Work</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Pricing</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Blog</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Careers</a>
         </div>
       </div>
+
       <div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.11em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:14px;font-family:'Manrope',sans-serif;">Resources</div>
-        <div style="display:flex;flex-direction:column;gap:9px;">
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Case Studies</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Blog</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Free Audit</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Process</a>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:16px;">Resources</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Case Studies</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Blog</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Free Audit</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Process</a>
         </div>
       </div>
+
       <div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.11em;text-transform:uppercase;color:rgba(255,255,255,0.26);margin-bottom:14px;font-family:'Manrope',sans-serif;">Contact</div>
-        <div style="display:flex;flex-direction:column;gap:9px;">
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Start a Project</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">hello@nerro.co</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">Instagram</a>
-          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.42);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">LinkedIn</a>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.24);margin-bottom:16px;">Contact</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Start a Project</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">hello@nerro.co</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Instagram</a>
+          <a href="#" style="font-size:12.5px;color:rgba(255,255,255,0.4);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">LinkedIn</a>
         </div>
       </div>
+
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-      <p style="font-size:11.5px;color:rgba(255,255,255,0.2);margin:0;font-family:'Manrope',sans-serif;">© 2026 Nerro. All rights reserved.</p>
-      <div style="display:flex;gap:18px;">
-        <a href="#" style="font-size:11.5px;color:rgba(255,255,255,0.2);" onmouseover="this.style.color='rgba(255,255,255,0.45)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Privacy</a>
-        <a href="#" style="font-size:11.5px;color:rgba(255,255,255,0.2);" onmouseover="this.style.color='rgba(255,255,255,0.45)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Terms</a>
-        <a href="#" style="font-size:11.5px;color:rgba(255,255,255,0.2);" onmouseover="this.style.color='rgba(255,255,255,0.45)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Cookies</a>
+    <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+      <p style="font-size:11.5px;color:rgba(255,255,255,0.18);margin:0;">© 2026 Nerro. All rights reserved.</p>
+      <div style="display:flex;gap:20px;">
+        <a href="#" style="font-size:11.5px;color:rgba(255,255,255,0.18);transition:color 0.15s;" onmouseover="this.style.color='rgba(255,255,255,0.44)'" onmouseout="this.style.color='rgba(255,255,255,0.18)'">Privacy</a>
+        <a href="#" style="font-size:11.5px;color:rgba(255,255,255,0.18);transition:color 0.15s;" onmouseover="this.style.color='rgba(255,255,255,0.44)'" onmouseout="this.style.color='rgba(255,255,255,0.18)'">Terms</a>
+        <a href="#" style="font-size:11.5px;color:rgba(255,255,255,0.18);transition:color 0.15s;" onmouseover="this.style.color='rgba(255,255,255,0.44)'" onmouseout="this.style.color='rgba(255,255,255,0.18)'">Cookies</a>
       </div>
     </div>
   </div>
 </footer>
 
+
 <script>
-  // ── NAV scroll state
+  // NAV scroll state
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
-  // ── SCROLL REVEAL via IntersectionObserver
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+  // SCROLL REVEAL
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-  // ── COUNTER ANIMATION
-  function animateCount(el, target, suffix = '') {
+  // COUNTER ANIMATION
+  function animateCount(el, target) {
     const duration = 1600;
     const start = performance.now();
     const update = (now) => {
       const t = Math.min((now - start) / duration, 1);
       const ease = 1 - Math.pow(1 - t, 4);
-      el.textContent = Math.round(ease * target) + suffix;
+      el.textContent = Math.round(ease * target);
       if (t < 1) requestAnimationFrame(update);
     };
     requestAnimationFrame(update);
   }
-
-  const counterObserver = new IntersectionObserver((entries) => {
+  const counterObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        const el = e.target;
-        const val = parseInt(el.dataset.counter);
-        animateCount(el, val);
-        counterObserver.unobserve(el);
+        animateCount(e.target, parseInt(e.target.dataset.counter));
+        counterObs.unobserve(e.target);
       }
     });
   }, { threshold: 0.5 });
-  document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observe(el));
+  document.querySelectorAll('[data-counter]').forEach(el => counterObs.observe(el));
 
-  // ── PERFORMANCE BAR animation
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.width = '98%';
-        barObserver.unobserve(e.target);
-      }
-    });
+  // PERFORMANCE BAR
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.width = '98%'; barObs.unobserve(e.target); } });
   }, { threshold: 0.5 });
-  document.querySelectorAll('.perf-bar').forEach(el => barObserver.observe(el));
+  document.querySelectorAll('.perf-bar').forEach(el => barObs.observe(el));
 
-  // ── FAQ ACCORDION
+  // FAQ
   function toggleFaq(el) {
     const answer = el.nextElementSibling;
     const isOpen = el.classList.contains('open');
@@ -1005,9 +1043,8 @@
       answer.style.maxHeight = answer.scrollHeight + 'px';
     }
   }
-  // Open first FAQ by default
   const firstFaq = document.querySelector('.faq-q.open');
-  if (firstFaq) { firstFaq.nextElementSibling.style.maxHeight = firstFaq.nextElementSibling.scrollHeight + 'px'; }
+  if (firstFaq) firstFaq.nextElementSibling.style.maxHeight = firstFaq.nextElementSibling.scrollHeight + 'px';
 </script>
 </body>
 </html>
