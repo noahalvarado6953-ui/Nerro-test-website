@@ -1,0 +1,6 @@
+node_modules/
+temporary screenshots/
+.DS_Store
+.claude/
+www.framer.com_.png
+screenshot-section.mjs
