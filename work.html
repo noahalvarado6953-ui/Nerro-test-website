@@ -97,6 +97,45 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--silken); border-radius: 3px; }
+
+    /* GRADIENT ANIMATION */
+    @keyframes moveVertical {
+      0%   { transform: translateY(-50%); }
+      50%  { transform: translateY(50%); }
+      100% { transform: translateY(-50%); }
+    }
+    @keyframes moveInCircle {
+      0%   { transform: rotate(0deg); }
+      50%  { transform: rotate(180deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes moveHorizontal {
+      0%   { transform: translateX(-50%) translateY(-10%); }
+      50%  { transform: translateX(50%) translateY(10%); }
+      100% { transform: translateX(-50%) translateY(-10%); }
+    }
+    .grad-container {
+      position: absolute; inset: 0; overflow: hidden; z-index: 0;
+    }
+    .grad-blobs {
+      position: absolute; inset: 0;
+      filter: url(#grad-blur) blur(40px);
+      -webkit-filter: blur(40px);
+    }
+    .grad-blob {
+      position: absolute;
+      width: 80%; height: 80%;
+      top: 10%; left: 10%;
+      border-radius: 50%;
+      mix-blend-mode: hard-light;
+      opacity: 1;
+    }
+    .hero-tag-light {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(107,140,95,0.18); border: 1.5px solid rgba(107,140,95,0.4);
+      color: #adc89e; padding: 5px 12px; border-radius: 20px;
+      font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
@@ -124,28 +163,60 @@
 
 
 <!-- HERO -->
-<section style="padding:160px 36px 80px;background:#fff;position:relative;overflow:hidden;">
-  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse at center,rgba(245,240,235,0.85) 0%,transparent 70%);pointer-events:none;"></div>
-  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
-    <div class="reveal" style="margin-bottom:20px;"><span class="tag">✦ Our Work</span></div>
-    <h1 class="reveal d1" style="font-size:clamp(48px,6.5vw,88px);line-height:1.02;margin-bottom:22px;">
+<section id="work-hero" style="padding:160px 36px 90px;background:linear-gradient(40deg,rgb(18,28,15),rgb(10,17,8));position:relative;overflow:hidden;">
+
+  <!-- SVG goo filter (hidden) -->
+  <svg style="display:none;position:absolute;">
+    <defs>
+      <filter id="grad-blur">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo"/>
+        <feBlend in="SourceGraphic" in2="goo"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Gradient animation layer -->
+  <div class="grad-container">
+    <div class="grad-blobs">
+      <!-- Blob 1: Juniper — moveVertical 30s -->
+      <div class="grad-blob" style="background:radial-gradient(circle at center, rgba(107,140,95,0.9) 0, rgba(107,140,95,0) 50%);transform-origin:center center;animation:moveVertical 30s ease infinite;"></div>
+      <!-- Blob 2: Silken — moveInCircle 20s reverse, offset origin -->
+      <div class="grad-blob" style="background:radial-gradient(circle at center, rgba(200,196,190,0.75) 0, rgba(200,196,190,0) 50%);transform-origin:calc(50% - 400px) 50%;animation:moveInCircle 20s reverse infinite;"></div>
+      <!-- Blob 3: Moss — moveInCircle 40s, opposite offset -->
+      <div class="grad-blob" style="background:radial-gradient(circle at center, rgba(74,103,65,0.85) 0, rgba(74,103,65,0) 50%);transform-origin:calc(50% + 400px) 50%;animation:moveInCircle 40s linear infinite;"></div>
+      <!-- Blob 4: Alabaster — moveHorizontal 40s, subtle -->
+      <div class="grad-blob" style="background:radial-gradient(circle at center, rgba(245,240,235,0.55) 0, rgba(245,240,235,0) 50%);transform-origin:calc(50% - 200px) 50%;animation:moveHorizontal 40s ease infinite;opacity:0.65;"></div>
+      <!-- Blob 5: Deep moss — moveInCircle 20s, far offset -->
+      <div class="grad-blob" style="background:radial-gradient(circle at center, rgba(50,72,44,0.9) 0, rgba(50,72,44,0) 50%);transform-origin:calc(50% - 800px) calc(50% + 800px);animation:moveInCircle 20s ease infinite;"></div>
+      <!-- Interactive pointer blob -->
+      <div id="grad-pointer" style="position:absolute;width:100%;height:100%;top:-50%;left:-50%;background:radial-gradient(circle at center, rgba(107,140,95,0.7) 0, rgba(107,140,95,0) 50%);mix-blend-mode:hard-light;opacity:0.7;transition:transform 0.1s linear;"></div>
+    </div>
+  </div>
+
+  <!-- Vignette overlay for legibility -->
+  <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 40%, transparent 40%, rgba(10,17,8,0.55) 100%);"></div>
+
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:2;">
+    <div class="reveal" style="margin-bottom:20px;"><span class="hero-tag-light">✦ Our Work</span></div>
+    <h1 class="reveal d1" style="font-size:clamp(48px,6.5vw,88px);line-height:1.02;margin-bottom:22px;color:#fff;">
       Websites built to
-      <em style="font-style:italic;color:var(--juniper);"> convert</em>
+      <em style="font-style:italic;color:#adc89e;"> convert</em>
     </h1>
-    <p class="reveal d2" style="font-size:17px;font-weight:600;color:var(--onyx);line-height:1.74;margin:0 0 40px;max-width:560px;">Every project here started with a brief and ended with a live site that actually wins clients. No templates — all custom.</p>
+    <p class="reveal d2" style="font-size:17px;font-weight:600;color:rgba(245,240,235,0.7);line-height:1.74;margin:0 0 40px;max-width:560px;">Every project here started with a brief and ended with a live site that actually wins clients. No templates — all custom.</p>
     <div class="reveal d3" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
-      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:20px;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--smoked);">10</span><span style="font-size:13px;font-weight:700;color:var(--onyx);opacity:0.6;">projects shown</span></div>
-      <div style="width:1px;height:16px;background:var(--border-hi);"></div>
-      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:20px;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--smoked);">50+</span><span style="font-size:13px;font-weight:700;color:var(--onyx);opacity:0.6;">total delivered</span></div>
-      <div style="width:1px;height:16px;background:var(--border-hi);"></div>
-      <div style="display:flex;align-items:center;gap:8px;"><span style="color:var(--moss);font-size:13px;letter-spacing:1px;">★★★★★</span><span style="font-size:13px;font-weight:700;color:var(--onyx);opacity:0.6;">all 5-star rated</span></div>
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:20px;font-family:'Cormorant Garamond',serif;font-weight:600;color:#fff;">10</span><span style="font-size:13px;font-weight:700;color:rgba(245,240,235,0.55);">projects shown</span></div>
+      <div style="width:1px;height:16px;background:rgba(245,240,235,0.2);"></div>
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:20px;font-family:'Cormorant Garamond',serif;font-weight:600;color:#fff;">50+</span><span style="font-size:13px;font-weight:700;color:rgba(245,240,235,0.55);">total delivered</span></div>
+      <div style="width:1px;height:16px;background:rgba(245,240,235,0.2);"></div>
+      <div style="display:flex;align-items:center;gap:8px;"><span style="color:#adc89e;font-size:13px;letter-spacing:1px;">★★★★★</span><span style="font-size:13px;font-weight:700;color:rgba(245,240,235,0.55);">all 5-star rated</span></div>
     </div>
   </div>
 </section>
 
 
 <!-- WORK GRID -->
-<section style="padding:0 36px 120px;background:#fff;">
+<section style="padding:72px 36px 120px;background:#fff;">
   <div style="max-width:1100px;margin:0 auto;">
 
     <!-- Row 1: 2 columns -->
@@ -494,6 +565,31 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Interactive pointer blob for gradient animation
+  (function() {
+    var ptr = document.getElementById('grad-pointer');
+    var hero = document.getElementById('work-hero');
+    if (!ptr || !hero) return;
+    var curX = 0, curY = 0, tgtX = 0, tgtY = 0, raf = null;
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function tick() {
+      curX = lerp(curX, tgtX, 0.08);
+      curY = lerp(curY, tgtY, 0.08);
+      ptr.style.transform = 'translate(' + Math.round(curX) + 'px,' + Math.round(curY) + 'px)';
+      raf = requestAnimationFrame(tick);
+    }
+    hero.addEventListener('mousemove', function(e) {
+      var r = hero.getBoundingClientRect();
+      tgtX = (e.clientX - r.left) - r.width * 0.5;
+      tgtY = (e.clientY - r.top)  - r.height * 0.5;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }, { passive: true });
+    hero.addEventListener('mouseleave', function() {
+      tgtX = 0; tgtY = 0;
+    });
+    raf = requestAnimationFrame(tick);
+  })();
 </script>
 </body>
 </html>
