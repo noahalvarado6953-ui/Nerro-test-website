@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nerro — Web Design Studio Built to Convert</title>
+  <link rel="icon" type="image/png" href="brand_assets/nice-nerro-logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -142,6 +143,39 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--silken); border-radius: 3px; }
     :focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; border-radius: 4px; }
+
+    /* GRADIENT ANIMATION (calc section) */
+    @keyframes moveVertical {
+      0%   { transform: translateY(-50%); }
+      50%  { transform: translateY(50%); }
+      100% { transform: translateY(-50%); }
+    }
+    @keyframes moveInCircle {
+      0%   { transform: rotate(0deg); }
+      50%  { transform: rotate(180deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes moveHorizontal {
+      0%   { transform: translateX(-50%) translateY(-10%); }
+      50%  { transform: translateX(50%) translateY(10%); }
+      100% { transform: translateX(-50%) translateY(-10%); }
+    }
+    .calc-grad-blobs {
+      position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none;
+    }
+    .calc-blob-layer {
+      position: absolute; inset: 0;
+      filter: url(#calc-blur) blur(40px);
+      -webkit-filter: blur(40px);
+    }
+    .calc-blob {
+      position: absolute;
+      width: 80%; height: 80%;
+      top: 10%; left: 10%;
+      border-radius: 50%;
+      mix-blend-mode: hard-light;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -758,11 +792,36 @@
 
 
 <!-- ═══════ REVENUE CALCULATOR ═══════ -->
-<section style="padding:100px 0;border-bottom:1.5px solid var(--border);background:var(--smoked);position:relative;overflow:hidden;">
-  <!-- Vibrant bg blobs -->
-  <div style="position:absolute;top:-80px;left:-80px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(74,103,65,0.25) 0%,transparent 65%);pointer-events:none;"></div>
-  <div style="position:absolute;bottom:-60px;right:-60px;width:400px;height:400px;background:radial-gradient(ellipse,rgba(107,140,95,0.2) 0%,transparent 65%);pointer-events:none;"></div>
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(245,240,235,0.04) 0%,transparent 70%);pointer-events:none;"></div>
+<section id="calc-section" style="padding:100px 0;border-bottom:1.5px solid var(--border);background:var(--smoked);position:relative;overflow:hidden;">
+
+  <!-- SVG goo filter -->
+  <svg style="display:none;position:absolute;">
+    <defs>
+      <filter id="calc-blur">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo"/>
+        <feBlend in="SourceGraphic" in2="goo"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Gradient animation layer -->
+  <div class="calc-grad-blobs">
+    <div class="calc-blob-layer">
+      <!-- Blob 1: Moss green — moveVertical 30s -->
+      <div class="calc-blob" style="background:radial-gradient(circle at center, rgba(74,103,65,0.9) 0, rgba(74,103,65,0) 50%);transform-origin:center center;animation:moveVertical 30s ease infinite;"></div>
+      <!-- Blob 2: Silken grey — moveInCircle 20s reverse -->
+      <div class="calc-blob" style="background:radial-gradient(circle at center, rgba(200,196,190,0.75) 0, rgba(200,196,190,0) 50%);transform-origin:calc(50% - 400px) 50%;animation:moveInCircle 20s reverse infinite;"></div>
+      <!-- Blob 3: Juniper — moveInCircle 40s -->
+      <div class="calc-blob" style="background:radial-gradient(circle at center, rgba(107,140,95,0.85) 0, rgba(107,140,95,0) 50%);transform-origin:calc(50% + 400px) 50%;animation:moveInCircle 40s linear infinite;"></div>
+      <!-- Blob 4: Alabaster warm brown — moveHorizontal 40s -->
+      <div class="calc-blob" style="background:radial-gradient(circle at center, rgba(245,240,235,0.5) 0, rgba(245,240,235,0) 50%);transform-origin:calc(50% - 200px) 50%;animation:moveHorizontal 40s ease infinite;opacity:0.6;"></div>
+      <!-- Blob 5: Deep smoked — moveInCircle 20s -->
+      <div class="calc-blob" style="background:radial-gradient(circle at center, rgba(65,65,65,0.85) 0, rgba(65,65,65,0) 50%);transform-origin:calc(50% - 800px) calc(50% + 800px);animation:moveInCircle 20s ease infinite;"></div>
+      <!-- Interactive pointer blob -->
+      <div id="calc-pointer" style="position:absolute;width:100%;height:100%;top:-50%;left:-50%;background:radial-gradient(circle at center, rgba(107,140,95,0.7) 0, rgba(107,140,95,0) 50%);mix-blend-mode:hard-light;opacity:0.7;"></div>
+    </div>
+  </div>
 
   <div style="max-width:1100px;margin:0 auto;padding:0 36px;position:relative;z-index:1;">
     <div class="reveal" style="text-align:center;margin-bottom:60px;">
@@ -1401,6 +1460,29 @@
     resize();
     window.addEventListener('resize', resize, { passive: true });
     requestAnimationFrame(draw);
+  })();
+
+  // Interactive pointer blob for calculator section gradient
+  (function() {
+    var ptr = document.getElementById('calc-pointer');
+    var sec = document.getElementById('calc-section');
+    if (!ptr || !sec) return;
+    var curX = 0, curY = 0, tgtX = 0, tgtY = 0, raf = null;
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function tick() {
+      curX = lerp(curX, tgtX, 0.08);
+      curY = lerp(curY, tgtY, 0.08);
+      ptr.style.transform = 'translate(' + Math.round(curX) + 'px,' + Math.round(curY) + 'px)';
+      raf = requestAnimationFrame(tick);
+    }
+    sec.addEventListener('mousemove', function(e) {
+      var r = sec.getBoundingClientRect();
+      tgtX = (e.clientX - r.left) - r.width * 0.5;
+      tgtY = (e.clientY - r.top)  - r.height * 0.5;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }, { passive: true });
+    sec.addEventListener('mouseleave', function() { tgtX = 0; tgtY = 0; });
+    raf = requestAnimationFrame(tick);
   })();
 </script>
 </body>
