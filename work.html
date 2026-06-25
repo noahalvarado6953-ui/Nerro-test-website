@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work — Nerro Web Design Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --moss:      #4A6741;
+      --juniper:   #6B8C5F;
+      --onyx:      #414141;
+      --alabaster: #F5F0EB;
+      --silken:    #C8C4BE;
+      --smoked:    #3D3D3D;
+      --bg:        #FFFFFF;
+      --surface:   #F5F0EB;
+      --elevated:  #EDE7DC;
+      --border:    rgba(65,65,65,0.13);
+      --border-hi: rgba(65,65,65,0.24);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--smoked); font-family: 'Manrope', sans-serif; font-weight: 600; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: -0.025em; margin: 0; color: var(--smoked); }
+    a { text-decoration: none; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 116px; display: flex; align-items: center; padding: 0 36px; background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); border-bottom: 1.5px solid var(--border); transition: border-color 0.3s, box-shadow 0.3s; }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(65,65,65,0.08); border-color: var(--border-hi); }
+    .nav-link { font-size: 13px; font-weight: 700; color: var(--onyx); opacity: 0.6; transition: opacity 0.15s; letter-spacing: 0.01em; }
+    .nav-link:hover { opacity: 1; }
+    .btn-nav-ghost { background: transparent; color: var(--onyx); border: 1.5px solid var(--border-hi); padding: 7px 16px; border-radius: 7px; font-size: 12.5px; font-weight: 700; transition: all 0.15s; cursor: pointer; }
+    .btn-nav-ghost:hover { border-color: var(--onyx); background: var(--surface); }
+    .btn-nav-primary { background: var(--moss); color: #fff; border: none; padding: 8px 17px; border-radius: 7px; font-size: 12.5px; font-weight: 800; cursor: pointer; transition: background 0.2s, box-shadow 0.3s; }
+    .btn-nav-primary:hover { background: #3a5230; box-shadow: 0 0 16px rgba(74,103,65,0.55), 0 0 40px rgba(74,103,65,0.28); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1{transition-delay:.06s} .d2{transition-delay:.12s} .d3{transition-delay:.18s} .d4{transition-delay:.24s} .d5{transition-delay:.30s}
+    .d6{transition-delay:.36s} .d7{transition-delay:.42s} .d8{transition-delay:.48s} .d9{transition-delay:.54s} .d10{transition-delay:.60s}
+
+    /* APPLE WINDOW */
+    .apple-window {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #1c1c1e;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.18),
+        0 8px 24px rgba(0,0,0,0.12),
+        0 32px 80px rgba(0,0,0,0.14),
+        0 2px 4px rgba(0,0,0,0.08);
+      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1);
+      cursor: pointer;
+    }
+    .apple-window:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.16),
+        0 16px 40px rgba(0,0,0,0.16),
+        0 48px 100px rgba(0,0,0,0.18),
+        0 4px 8px rgba(0,0,0,0.08);
+    }
+    .apple-bar {
+      height: 40px;
+      background: linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%);
+      border-bottom: 1px solid rgba(0,0,0,0.35);
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 7px;
+      position: relative;
+    }
+    .apple-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; position: relative; }
+    .apple-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(145deg,rgba(255,255,255,0.35),transparent); }
+    .apple-bar-title { position: absolute; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5); font-family: -apple-system, 'SF Pro Text', 'Manrope', sans-serif; letter-spacing: 0.01em; white-space: nowrap; }
+    .apple-bar-url { margin-left: 14px; flex: 1; max-width: 220px; height: 20px; background: rgba(255,255,255,0.08); border-radius: 5px; display: flex; align-items: center; padding: 0 9px; gap: 5px; }
+    .apple-bar-url-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.22); flex-shrink: 0; }
+    .apple-bar-url-text { font-size: 10px; color: rgba(255,255,255,0.3); font-family: 'Manrope', sans-serif; font-weight: 700; }
+    .site-preview { height: 280px; position: relative; overflow: hidden; }
+
+    /* TAG */
+    .tag { display: inline-flex; align-items: center; gap: 5px; background: rgba(74,103,65,0.1); border: 1.5px solid rgba(74,103,65,0.25); color: var(--moss); padding: 5px 12px; border-radius: 20px; font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+    .chip { display: inline-flex; align-items: center; background: var(--elevated); border: 1.5px solid var(--border); color: var(--onyx); padding: 4px 10px; border-radius: 20px; font-size: 10.5px; font-weight: 700; }
+
+    /* FLOATING BADGE ANIM */
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    .floating { animation: float 3.5s ease-in-out infinite; }
+    @keyframes pulse-glow { 0%,100%{box-shadow:0 0 0 0 rgba(74,103,65,0.4)} 50%{box-shadow:0 0 0 8px rgba(74,103,65,0)} }
+
+    /* BACK BUTTON */
+    .btn-back { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 800; color: var(--onyx); background: var(--surface); border: 1.5px solid var(--border); padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+    .btn-back:hover { background: var(--elevated); border-color: var(--border-hi); }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--silken); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div style="display:flex;align-items:center;flex:1;gap:36px;">
+    <a href="index.html" style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
+      <img src="brand_assets/nerro_n_transparent_pfp_2048.png" alt="Nerro logo" style="width:112px;height:112px;object-fit:contain;flex-shrink:0;">
+      <img src="brand_assets/nerro-wordmark-transparent.png" alt="Nerro" style="height:64px;width:auto;filter:invert(49%) sepia(16%) saturate(563%) hue-rotate(71deg) brightness(95%) contrast(87%);">
+    </a>
+    <div style="display:flex;gap:28px;align-items:center;">
+      <a href="index.html#work"     class="nav-link">Work</a>
+      <a href="index.html#services" class="nav-link">Services</a>
+      <a href="index.html#process"  class="nav-link">Process</a>
+      <a href="index.html#pricing"  class="nav-link">Pricing</a>
+      <a href="index.html#faq"      class="nav-link">FAQ</a>
+    </div>
+  </div>
+  <div style="display:flex;gap:9px;align-items:center;">
+    <a href="index.html" class="btn-back">← Back to Home</a>
+    <button class="btn-nav-primary" onclick="window.location.href='index.html'">Start a Project →</button>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section style="padding:160px 36px 80px;background:#fff;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse at center,rgba(245,240,235,0.85) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+    <div class="reveal" style="margin-bottom:20px;"><span class="tag">✦ Our Work</span></div>
+    <h1 class="reveal d1" style="font-size:clamp(48px,6.5vw,88px);line-height:1.02;margin-bottom:22px;">
+      Websites built to
+      <em style="font-style:italic;color:var(--juniper);"> convert</em>
+    </h1>
+    <p class="reveal d2" style="font-size:17px;font-weight:600;color:var(--onyx);line-height:1.74;margin:0 0 40px;max-width:560px;">Every project here started with a brief and ended with a live site that actually wins clients. No templates — all custom.</p>
+    <div class="reveal d3" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:20px;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--smoked);">10</span><span style="font-size:13px;font-weight:700;color:var(--onyx);opacity:0.6;">projects shown</span></div>
+      <div style="width:1px;height:16px;background:var(--border-hi);"></div>
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:20px;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--smoked);">50+</span><span style="font-size:13px;font-weight:700;color:var(--onyx);opacity:0.6;">total delivered</span></div>
+      <div style="width:1px;height:16px;background:var(--border-hi);"></div>
+      <div style="display:flex;align-items:center;gap:8px;"><span style="color:var(--moss);font-size:13px;letter-spacing:1px;">★★★★★</span><span style="font-size:13px;font-weight:700;color:var(--onyx);opacity:0.6;">all 5-star rated</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- WORK GRID -->
+<section style="padding:0 36px 120px;background:#fff;">
+  <div style="max-width:1100px;margin:0 auto;">
+
+    <!-- Row 1: 2 columns -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px;">
+
+      <!-- 1. Lumière Interior Design -->
+      <div class="reveal d1">
+        <div class="apple-window" style="margin-bottom:18px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">lumiereinteriors.com</div></div>
+            <span class="apple-bar-title">Lumière Interiors</span>
+          </div>
+          <div class="site-preview" style="background:linear-gradient(145deg,#1a1208,#2d2010);">
+            <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,180,130,0.12) 0%,transparent 60%);"></div>
+            <div style="position:absolute;top:0;right:0;width:55%;height:100%;background:linear-gradient(to left,rgba(212,180,130,0.08),transparent);"></div>
+            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(212,180,130,0.02) 1px,transparent 1px);background-size:100% 32px;"></div>
+            <div style="position:absolute;top:32px;left:32px;right:32px;">
+              <div style="font-size:9px;font-weight:800;color:rgba(212,180,130,0.5);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">Interior Design</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:600;color:#F5F0EB;line-height:0.94;letter-spacing:-0.02em;margin-bottom:14px;">Lumière</div>
+              <div style="font-size:11px;font-weight:600;color:rgba(245,240,235,0.45);line-height:1.65;margin-bottom:20px;max-width:220px;">Where light and material meet to create spaces that endure.</div>
+              <div style="display:inline-flex;gap:9px;">
+                <div style="background:#C8A96B;border-radius:5px;padding:7px 14px;font-size:10px;font-weight:800;color:#1a1208;">Book a Consult</div>
+                <div style="border:1px solid rgba(245,240,235,0.2);border-radius:5px;padding:7px 12px;font-size:10px;font-weight:700;color:rgba(245,240,235,0.5);">Portfolio →</div>
+              </div>
+            </div>
+            <div style="position:absolute;bottom:0;right:0;width:180px;height:180px;background:radial-gradient(ellipse at right bottom,rgba(200,169,107,0.15),transparent 65%);pointer-events:none;"></div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div>
+            <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:6px;">Lumière Interiors · 2025</div>
+            <div style="font-size:16px;font-weight:800;color:var(--smoked);margin-bottom:8px;">Luxury Interior Design</div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;"><span class="tag" style="font-size:9.5px;">+340% traffic</span><span class="chip">Interior Design</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Grove Architecture -->
+      <div class="reveal d2">
+        <div class="apple-window" style="margin-bottom:18px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">grovearchitects.com</div></div>
+            <span class="apple-bar-title">Grove Architects</span>
+          </div>
+          <div class="site-preview" style="background:linear-gradient(145deg,#141414,#1e2216);">
+            <div style="position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(to left,rgba(74,103,65,0.1),transparent);"></div>
+            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:36px 36px;"></div>
+            <div style="position:absolute;top:32px;left:32px;right:32px;">
+              <div style="font-size:10px;font-weight:900;color:rgba(107,140,95,0.7);letter-spacing:0.28em;text-transform:uppercase;margin-bottom:16px;">GROVE</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:600;color:#F5F0EB;line-height:1;letter-spacing:-0.02em;margin-bottom:12px;">Architecture<br><em style="font-style:italic;color:rgba(107,140,95,0.7);">with purpose</em></div>
+              <div style="display:flex;gap:9px;margin-top:18px;">
+                <div style="background:#4A6741;border-radius:5px;padding:7px 14px;font-size:10px;font-weight:800;color:#fff;">Our Projects</div>
+                <div style="border:1px solid rgba(245,240,235,0.15);border-radius:5px;padding:7px 12px;font-size:10px;font-weight:700;color:rgba(245,240,235,0.45);">Contact us</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div>
+            <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:6px;">Grove Architects · 2025</div>
+            <div style="font-size:16px;font-weight:800;color:var(--smoked);margin-bottom:8px;">Architectural Firm</div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;"><span class="tag" style="font-size:9.5px;">+220% leads</span><span class="chip">Architecture</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: 3 columns -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin-bottom:28px;">
+
+      <!-- 3. Vela Wellness -->
+      <div class="reveal d3">
+        <div class="apple-window" style="margin-bottom:14px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">velastudio.co</div></div>
+          </div>
+          <div class="site-preview" style="background:linear-gradient(145deg,#1a1a2e,#0f0f1e);">
+            <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(ellipse,rgba(150,120,200,0.15),transparent 65%);"></div>
+            <div style="position:absolute;top:28px;left:20px;right:20px;text-align:center;">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;font-style:italic;color:#F5F0EB;line-height:1;margin-bottom:10px;">Vela</div>
+              <div style="font-size:8.5px;font-weight:700;color:rgba(245,240,235,0.35);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">Wellness Studio</div>
+              <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:16px;">
+                <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:8px;font-size:10px;font-weight:700;color:rgba(245,240,235,0.5);">Morning Flow — 7:00am</div>
+                <div style="background:rgba(150,120,200,0.15);border:1px solid rgba(150,120,200,0.25);border-radius:6px;padding:8px;font-size:10px;font-weight:700;color:rgba(200,170,255,0.8);">Yin Yoga — 6:00pm ●</div>
+              </div>
+              <div style="background:rgba(150,120,200,0.25);border:1px solid rgba(150,120,200,0.4);border-radius:6px;padding:7px;font-size:10px;font-weight:800;color:rgba(200,170,255,0.9);">Book a Class →</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:5px;">Vela Studio · 2025</div>
+        <div style="font-size:15px;font-weight:800;color:var(--smoked);margin-bottom:7px;">Wellness &amp; Yoga</div>
+        <div style="display:flex;gap:6px;"><span class="tag" style="font-size:9.5px;">+180% bookings</span><span class="chip">Wellness</span></div>
+      </div>
+
+      <!-- 4. Harlow Real Estate -->
+      <div class="reveal d4">
+        <div class="apple-window" style="margin-bottom:14px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">harlowproperty.com</div></div>
+          </div>
+          <div class="site-preview" style="background:linear-gradient(145deg,#0c1218,#141c24);">
+            <div style="position:absolute;top:0;right:0;width:60%;height:60%;background:radial-gradient(ellipse at right top,rgba(180,160,110,0.1),transparent 65%);"></div>
+            <div style="position:absolute;top:28px;left:20px;right:20px;">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;color:#F5F0EB;line-height:1;margin-bottom:8px;">Harlow<br><em style="font-style:italic;color:rgba(200,175,120,0.7);">Property</em></div>
+              <div style="font-size:9px;font-weight:700;color:rgba(245,240,235,0.3);margin-bottom:16px;">Luxury homes, curated for you.</div>
+              <div style="display:flex;gap:5px;margin-bottom:14px;">
+                <div style="background:rgba(200,175,120,0.15);border:1px solid rgba(200,175,120,0.3);border-radius:4px;padding:5px 9px;font-size:9px;font-weight:700;color:rgba(200,175,120,0.8);">Buy</div>
+                <div style="background:rgba(255,255,255,0.06);border-radius:4px;padding:5px 9px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.3);">Rent</div>
+                <div style="background:rgba(255,255,255,0.06);border-radius:4px;padding:5px 9px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.3);">Sell</div>
+              </div>
+              <div style="background:#C8AF78;border-radius:5px;padding:7px 14px;display:inline-block;font-size:9.5px;font-weight:800;color:#0c1218;">Find Your Home →</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:5px;">Harlow Property · 2025</div>
+        <div style="font-size:15px;font-weight:800;color:var(--smoked);margin-bottom:7px;">Real Estate Agency</div>
+        <div style="display:flex;gap:6px;"><span class="tag" style="font-size:9.5px;">+290% enquiries</span><span class="chip">Real Estate</span></div>
+      </div>
+
+      <!-- 5. Miroir Photography -->
+      <div class="reveal d5">
+        <div class="apple-window" style="margin-bottom:14px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">miroirphoto.com</div></div>
+          </div>
+          <div class="site-preview" style="background:#0a0a0a;">
+            <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:18px 18px;"></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.8));"></div>
+            <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;justify-content:flex-end;padding:22px 20px;">
+              <div style="font-size:8px;font-weight:800;letter-spacing:0.28em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:8px;">Miroir Studio</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;color:#fff;line-height:0.98;margin-bottom:12px;">The art<br><em style="font-style:italic;">of the still</em></div>
+              <div style="display:flex;gap:7px;">
+                <div style="background:#fff;border-radius:4px;padding:6px 12px;font-size:9.5px;font-weight:800;color:#0a0a0a;">View Work</div>
+                <div style="border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:6px 10px;font-size:9.5px;font-weight:700;color:rgba(255,255,255,0.5);">Book →</div>
+              </div>
+            </div>
+            <div style="position:absolute;top:20px;right:20px;width:80px;height:80px;border:1px solid rgba(255,255,255,0.08);border-radius:6px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;">
+              <div style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;"><div style="width:18px;height:18px;border-radius:50%;border:1px solid rgba(255,255,255,0.3);"></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:5px;">Miroir Studio · 2025</div>
+        <div style="font-size:15px;font-weight:800;color:var(--smoked);margin-bottom:7px;">Photography Studio</div>
+        <div style="display:flex;gap:6px;"><span class="tag" style="font-size:9.5px;">+3× bookings</span><span class="chip">Photography</span></div>
+      </div>
+
+    </div>
+
+    <!-- Row 3: 2 columns -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px;">
+
+      <!-- 6. Sterling Law -->
+      <div class="reveal d6">
+        <div class="apple-window" style="margin-bottom:18px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">sterlinglegal.com</div></div>
+            <span class="apple-bar-title">Sterling Legal Group</span>
+          </div>
+          <div class="site-preview" style="background:linear-gradient(145deg,#101820,#182030);">
+            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#C8A96B,#8B6914);"></div>
+            <div style="position:absolute;top:32px;left:32px;right:32px;">
+              <div style="font-size:9px;font-weight:800;letter-spacing:0.22em;color:rgba(200,169,107,0.6);text-transform:uppercase;margin-bottom:14px;">Sterling Legal Group</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#F5F0EB;line-height:1;letter-spacing:-0.02em;margin-bottom:12px;">Justice.<br><em style="font-style:italic;color:rgba(200,169,107,0.65);">Tenaciously.</em></div>
+              <div style="font-size:10px;font-weight:600;color:rgba(245,240,235,0.4);max-width:260px;line-height:1.65;margin-bottom:20px;">Trusted counsel for individuals and businesses across the state.</div>
+              <div style="display:flex;gap:9px;">
+                <div style="background:#C8A96B;border-radius:5px;padding:8px 16px;font-size:10px;font-weight:800;color:#101820;">Free Consultation</div>
+                <div style="border:1px solid rgba(245,240,235,0.12);border-radius:5px;padding:8px 12px;font-size:10px;font-weight:700;color:rgba(245,240,235,0.35);">Our Practice →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:6px;">Sterling Legal · 2025</div>
+          <div style="font-size:16px;font-weight:800;color:var(--smoked);margin-bottom:8px;">Law Firm</div>
+          <div style="display:flex;gap:7px;"><span class="tag" style="font-size:9.5px;">+190% consultations</span><span class="chip">Legal</span></div>
+        </div>
+      </div>
+
+      <!-- 7. Maison Restaurant -->
+      <div class="reveal d7">
+        <div class="apple-window" style="margin-bottom:18px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">maisonrestaurant.co</div></div>
+            <span class="apple-bar-title">Maison</span>
+          </div>
+          <div class="site-preview" style="background:linear-gradient(145deg,#1a0a08,#281208);">
+            <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,200,100,0.04) 1px,transparent 1px);background-size:24px 24px;"></div>
+            <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(ellipse,rgba(255,160,50,0.08),transparent 65%);pointer-events:none;"></div>
+            <div style="position:absolute;top:32px;left:32px;right:32px;text-align:center;">
+              <div style="font-size:9px;font-weight:700;color:rgba(255,180,80,0.45);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:14px;">Since 2018</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:58px;font-weight:600;font-style:italic;color:#FDF8F0;line-height:1;letter-spacing:-0.01em;margin-bottom:10px;">Maison</div>
+              <div style="font-size:10px;font-weight:600;color:rgba(253,248,240,0.38);margin-bottom:18px;">Modern French · Seasonal Menu</div>
+              <div style="display:flex;gap:9px;justify-content:center;">
+                <div style="background:rgba(255,180,80,0.15);border:1px solid rgba(255,180,80,0.35);border-radius:5px;padding:7px 16px;font-size:10px;font-weight:800;color:rgba(255,180,80,0.9);">Reserve a Table</div>
+                <div style="border:1px solid rgba(253,248,240,0.1);border-radius:5px;padding:7px 12px;font-size:10px;font-weight:700;color:rgba(253,248,240,0.35);">Menu →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:6px;">Maison · 2025</div>
+          <div style="font-size:16px;font-weight:800;color:var(--smoked);margin-bottom:8px;">Fine Dining Restaurant</div>
+          <div style="display:flex;gap:7px;"><span class="tag" style="font-size:9.5px;">+410% reservations</span><span class="chip">Hospitality</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4: 3 columns -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin-bottom:28px;">
+
+      <!-- 8. Peak Performance -->
+      <div class="reveal d8">
+        <div class="apple-window" style="margin-bottom:14px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">peakfit.co</div></div>
+          </div>
+          <div class="site-preview" style="background:linear-gradient(145deg,#0a0a0a,#111418);">
+            <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,80,50,0.06),transparent 60%);"></div>
+            <div style="position:absolute;top:28px;left:20px;right:20px;">
+              <div style="font-size:8.5px;font-weight:900;letter-spacing:0.25em;color:rgba(255,80,50,0.6);text-transform:uppercase;margin-bottom:12px;">Peak Performance</div>
+              <div style="font-family:'Manrope',sans-serif;font-size:36px;font-weight:900;color:#fff;line-height:0.95;margin-bottom:12px;">TRAIN.<br>PERFORM.<br><span style="color:rgba(255,80,50,0.8);">WIN.</span></div>
+              <div style="background:rgba(255,80,50,0.15);border:1px solid rgba(255,80,50,0.3);border-radius:5px;padding:7px 14px;display:inline-block;font-size:9.5px;font-weight:800;color:rgba(255,100,70,0.9);">Start Training →</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:5px;">Peak Fitness · 2025</div>
+        <div style="font-size:15px;font-weight:800;color:var(--smoked);margin-bottom:7px;">Personal Trainer</div>
+        <div style="display:flex;gap:6px;"><span class="tag" style="font-size:9.5px;">+250% clients</span><span class="chip">Fitness</span></div>
+      </div>
+
+      <!-- 9. Clarity Dental -->
+      <div class="reveal d9">
+        <div class="apple-window" style="margin-bottom:14px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">claritydental.com</div></div>
+          </div>
+          <div class="site-preview" style="background:linear-gradient(145deg,#f0f8ff,#e4f2fc);">
+            <div style="position:absolute;top:0;right:0;width:60%;height:100%;background:linear-gradient(to left,rgba(30,100,200,0.05),transparent);"></div>
+            <div style="position:absolute;top:28px;left:20px;right:20px;">
+              <div style="font-size:9px;font-weight:800;color:rgba(30,100,200,0.5);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;">Clarity Dental</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;color:#1a2a3a;line-height:1.05;margin-bottom:8px;">Confident<br>smiles, every day</div>
+              <div style="font-size:10px;font-weight:700;color:rgba(30,50,80,0.5);margin-bottom:16px;line-height:1.55;">Modern dentistry with a gentle touch.</div>
+              <div style="display:flex;gap:7px;">
+                <div style="background:#1e64c8;border-radius:5px;padding:7px 13px;font-size:9.5px;font-weight:800;color:#fff;">Book Online</div>
+                <div style="border:1px solid rgba(30,100,200,0.2);border-radius:5px;padding:7px 10px;font-size:9.5px;font-weight:700;color:rgba(30,100,200,0.6);">Our Team</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:5px;">Clarity Dental · 2025</div>
+        <div style="font-size:15px;font-weight:800;color:var(--smoked);margin-bottom:7px;">Dental Clinic</div>
+        <div style="display:flex;gap:6px;"><span class="tag" style="font-size:9.5px;">+320% new patients</span><span class="chip">Healthcare</span></div>
+      </div>
+
+      <!-- 10. Aves Fashion -->
+      <div class="reveal d10">
+        <div class="apple-window" style="margin-bottom:14px;">
+          <div class="apple-bar">
+            <div class="apple-dot" style="background:#ff5f57;"></div>
+            <div class="apple-dot" style="background:#febc2e;"></div>
+            <div class="apple-dot" style="background:#28c840;"></div>
+            <div class="apple-bar-url"><div class="apple-bar-url-dot"></div><div class="apple-bar-url-text">avescollection.com</div></div>
+          </div>
+          <div class="site-preview" style="background:linear-gradient(145deg,#f8f3ee,#ede4d8);">
+            <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(0,0,0,0.025) 1px,transparent 1px);background-size:20px 20px;"></div>
+            <div style="position:absolute;top:28px;left:20px;right:20px;text-align:center;">
+              <div style="font-size:8px;font-weight:900;letter-spacing:0.32em;color:rgba(60,40,20,0.35);text-transform:uppercase;margin-bottom:16px;">AVES COLLECTION</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;color:#2a1e14;line-height:1;margin-bottom:10px;">Refined<br><em style="font-style:italic;color:rgba(74,103,65,0.75);">by nature</em></div>
+              <div style="font-size:9.5px;font-weight:700;color:rgba(60,40,20,0.4);margin-bottom:16px;">Sustainable fashion for the discerning.</div>
+              <div style="display:flex;gap:8px;justify-content:center;">
+                <div style="background:#2a1e14;border-radius:4px;padding:7px 14px;font-size:9.5px;font-weight:800;color:#F5F0EB;">Shop Now</div>
+                <div style="border:1px solid rgba(60,40,20,0.2);border-radius:4px;padding:7px 10px;font-size:9.5px;font-weight:700;color:rgba(60,40,20,0.45);">Lookbook</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--onyx);opacity:0.4;margin-bottom:5px;">Aves Collection · 2025</div>
+        <div style="font-size:15px;font-weight:800;color:var(--smoked);margin-bottom:7px;">Fashion Boutique</div>
+        <div style="display:flex;gap:6px;"><span class="tag" style="font-size:9.5px;">+380% online sales</span><span class="chip">Fashion</span></div>
+      </div>
+
+    </div>
+
+    <!-- CTA strip -->
+    <div class="reveal" style="background:var(--moss);border-radius:20px;padding:52px 56px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-top:16px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(255,255,255,0.06),transparent 65%);pointer-events:none;"></div>
+      <div style="position:relative;z-index:1;">
+        <div style="font-size:11px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:12px;">Ready to be next?</div>
+        <h2 style="font-size:clamp(32px,3.5vw,48px);line-height:1.06;color:#fff;margin-bottom:10px;">Let's build yours<em style="font-style:italic;color:rgba(245,240,235,0.65);"> now</em></h2>
+        <p style="font-size:15px;font-weight:600;color:rgba(255,255,255,0.6);margin:0;max-width:400px;line-height:1.7;">Get a custom-designed, conversion-optimized website delivered in 14 days.</p>
+      </div>
+      <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:12px;align-items:flex-end;">
+        <button onclick="window.location.href='index.html'" style="background:#fff;color:var(--moss);border:none;padding:16px 32px;border-radius:9px;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Manrope',sans-serif;transition:box-shadow 0.3s,transform 0.1s;" onmouseover="this.style.boxShadow='0 0 24px rgba(255,255,255,0.4)'" onmouseout="this.style.boxShadow='none'" onmousedown="this.style.transform='scale(0.97)'" onmouseup="this.style.transform='scale(1)'">Start Your Project →</button>
+        <p style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.4);margin:0;text-align:right;">Free strategy call · No commitment</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="padding:40px 36px;background:var(--smoked);border-top:1.5px solid rgba(255,255,255,0.06);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="brand_assets/nerro_n_transparent_pfp_2048.png" alt="Nerro" style="width:36px;height:36px;object-fit:contain;filter:invert(1);">
+      <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);">© 2026 Nerro. All rights reserved.</span>
+    </div>
+    <a href="index.html" style="font-size:13px;font-weight:800;color:rgba(255,255,255,0.45);transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">← Back to Home</a>
+  </div>
+</footer>
+
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); }, { passive: true });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

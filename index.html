@@ -58,7 +58,7 @@
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 72px; display: flex; align-items: center; padding: 0 36px;
+      height: 116px; display: flex; align-items: center; padding: 0 36px;
       background: rgba(255,255,255,0.96);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1.5px solid var(--border);
@@ -69,17 +69,37 @@
     .nav-link:hover { opacity: 1; }
     .btn-nav-ghost { background: transparent; color: var(--onyx); border: 1.5px solid var(--border-hi); padding: 7px 16px; border-radius: 7px; font-size: 12.5px; font-weight: 700; transition: all 0.15s; }
     .btn-nav-ghost:hover { border-color: var(--onyx); background: var(--surface); }
-    .btn-nav-primary { background: var(--moss); color: #fff; border: none; padding: 8px 17px; border-radius: 7px; font-size: 12.5px; font-weight: 800; transition: background 0.15s, transform 0.1s; }
-    .btn-nav-primary:hover { background: #3a5230; }
-    .btn-nav-primary:active { transform: scale(0.97); }
+    .btn-nav-primary { background: var(--moss); color: #fff; border: none; padding: 8px 17px; border-radius: 7px; font-size: 12.5px; font-weight: 800; transition: background 0.2s, transform 0.1s, box-shadow 0.3s; }
+    .btn-nav-primary:hover { background: #3a5230; box-shadow: 0 0 16px rgba(74,103,65,0.55), 0 0 40px rgba(74,103,65,0.28), 0 4px 12px rgba(74,103,65,0.35); }
+    .btn-nav-primary:active { transform: scale(0.97); box-shadow: none; }
 
     /* BUTTONS */
-    .btn-primary { background: var(--moss); color: #fff; border: none; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 800; transition: background 0.15s, transform 0.1s, box-shadow 0.2s; display: inline-flex; align-items: center; gap: 7px; letter-spacing: 0.01em; }
-    .btn-primary:hover { background: #3a5230; box-shadow: 0 6px 24px rgba(74,103,65,0.3); }
-    .btn-primary:active { transform: scale(0.97); }
-    .btn-ghost { background: transparent; color: var(--smoked); border: 1.5px solid var(--border-hi); padding: 14px 26px; border-radius: 8px; font-size: 14px; font-weight: 700; transition: all 0.15s; display: inline-flex; align-items: center; gap: 7px; }
+    .btn-primary { background: var(--moss); color: #fff; border: none; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 800; transition: background 0.2s, transform 0.1s, box-shadow 0.3s; display: inline-flex; align-items: center; gap: 7px; letter-spacing: 0.01em; cursor: pointer; }
+    .btn-primary:hover { background: #3a5230; box-shadow: 0 0 20px rgba(74,103,65,0.6), 0 0 50px rgba(74,103,65,0.3), 0 6px 20px rgba(74,103,65,0.35); }
+    .btn-primary:active { transform: scale(0.97); box-shadow: none; }
+    .btn-ghost { background: transparent; color: var(--smoked); border: 1.5px solid var(--border-hi); padding: 14px 26px; border-radius: 8px; font-size: 14px; font-weight: 700; transition: all 0.2s; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
     .btn-ghost:hover { border-color: var(--onyx); background: var(--surface); }
     .btn-ghost:active { transform: scale(0.97); }
+    .btn-see-work { background: transparent; color: var(--smoked); border: 1.5px solid var(--border-hi); padding: 14px 26px; border-radius: 8px; font-size: 14px; font-weight: 700; transition: background 0.2s, border-color 0.2s, box-shadow 0.3s, transform 0.1s; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+    .btn-see-work:hover { border-color: var(--juniper); background: rgba(107,140,95,0.07); box-shadow: 0 0 16px rgba(107,140,95,0.4), 0 0 40px rgba(107,140,95,0.18); color: var(--juniper); }
+    .btn-see-work:active { transform: scale(0.97); box-shadow: none; }
+
+    /* MODAL */
+    #project-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s cubic-bezier(0.22,1,0.36,1); }
+    #project-modal.open { opacity: 1; pointer-events: all; }
+    #project-modal .modal-backdrop { position: absolute; inset: 0; background: rgba(30,30,30,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); cursor: pointer; }
+    #project-modal .modal-card { position: relative; z-index: 1; background: #fff; border-radius: 22px; width: 90%; max-width: 680px; max-height: 92vh; overflow-y: auto; padding: 52px 56px 48px; box-shadow: 0 32px 80px rgba(30,30,30,0.3), 0 4px 20px rgba(30,30,30,0.1); transform: translateY(28px) scale(0.97); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); }
+    #project-modal.open .modal-card { transform: translateY(0) scale(1); }
+    #project-modal input, #project-modal textarea { width: 100%; border: 1.5px solid var(--border); border-radius: 10px; padding: 13px 16px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; color: var(--smoked); background: var(--surface); transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+    #project-modal input:focus, #project-modal textarea:focus { border-color: var(--moss); box-shadow: 0 0 0 3px rgba(74,103,65,0.12); }
+    #project-modal input::placeholder, #project-modal textarea::placeholder { color: var(--silken); font-weight: 600; }
+
+    /* CALCULATOR */
+    .calc-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 5px; border-radius: 3px; background: var(--elevated); outline: none; transition: background 0.2s; }
+    .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--moss); cursor: pointer; box-shadow: 0 0 0 4px rgba(74,103,65,0.15), 0 2px 8px rgba(74,103,65,0.3); transition: box-shadow 0.2s; }
+    .calc-slider::-webkit-slider-thumb:hover { box-shadow: 0 0 0 6px rgba(74,103,65,0.2), 0 0 16px rgba(74,103,65,0.4); }
+    .calc-slider::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--moss); cursor: pointer; border: none; box-shadow: 0 2px 8px rgba(74,103,65,0.3); }
+    @keyframes counter-pop { 0%{transform:scale(0.85);opacity:0} 60%{transform:scale(1.06)} 100%{transform:scale(1);opacity:1} }
     .btn-brown { background: var(--onyx); color: #fff; border: none; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 800; transition: background 0.15s, transform 0.1s; display: inline-flex; align-items: center; gap: 7px; }
     .btn-brown:hover { background: var(--smoked); }
     .btn-brown:active { transform: scale(0.97); }
@@ -129,12 +149,11 @@
 <!-- ═══════ NAV ═══════ -->
 <nav id="main-nav">
   <div style="display:flex;align-items:center;flex:1;gap:36px;">
-    <a href="#" style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
-      <!-- Logo: BIG and visible — no filter needed on white bg -->
-      <img src="brand_assets/nerrologofinal.png" alt="Nerro logo"
-           style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 10px rgba(65,65,65,0.15);">
+    <a href="#" style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
+      <img src="brand_assets/nerro_n_transparent_pfp_2048.png" alt="Nerro logo"
+           style="width:112px;height:112px;object-fit:contain;flex-shrink:0;">
       <img src="brand_assets/nerro-wordmark-transparent.png" alt="Nerro"
-           style="height:32px;width:auto;">
+           style="height:64px;width:auto;filter:invert(49%) sepia(16%) saturate(563%) hue-rotate(71deg) brightness(95%) contrast(87%);">
     </a>
     <div style="display:flex;gap:28px;align-items:center;">
       <a href="#work"     class="nav-link">Work</a>
@@ -146,13 +165,13 @@
   </div>
   <div style="display:flex;gap:9px;align-items:center;">
     <button class="btn-nav-ghost">Log in</button>
-    <button class="btn-nav-primary">Start a Project →</button>
+    <button class="btn-nav-primary" onclick="openModal()">Start a Project →</button>
   </div>
 </nav>
 
 
 <!-- ═══════ HERO ═══════ -->
-<section style="position:relative;padding:168px 36px 0;overflow:hidden;background:#fff;">
+<section style="position:relative;padding:148px 36px 0;overflow:hidden;background:#fff;">
   <!-- Subtle alabaster glow behind headline -->
   <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse at center,rgba(245,240,235,0.9) 0%,transparent 70%);pointer-events:none;"></div>
   <div style="position:absolute;top:100px;right:0;width:400px;height:400px;background:radial-gradient(ellipse at right,rgba(74,103,65,0.06) 0%,transparent 65%);pointer-events:none;"></div>
@@ -169,8 +188,8 @@
       Custom-designed. Conversion-optimized. Delivered in 14 days.<br>No templates, no bloat — just websites that win clients.
     </p>
     <div class="reveal d3" style="display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:36px;">
-      <button class="btn-primary">Start Your Project →</button>
-      <button class="btn-ghost">See Our Work</button>
+      <button class="btn-primary" onclick="openModal()">Start Your Project →</button>
+      <button class="btn-see-work" onclick="window.location.href='work.html'">See Our Work</button>
     </div>
     <!-- Social proof -->
     <div class="reveal d4" style="display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap;">
@@ -347,7 +366,7 @@
           </div>
         </div>
         <div style="margin-top:36px;">
-          <button class="btn-primary">Start Your Project →</button>
+          <button class="btn-primary" onclick="openModal()">Start Your Project →</button>
         </div>
       </div>
     </div>
@@ -732,6 +751,132 @@
 </section>
 
 
+<!-- ═══════ REVENUE CALCULATOR ═══════ -->
+<section style="padding:100px 0;border-bottom:1.5px solid var(--border);background:var(--smoked);position:relative;overflow:hidden;">
+  <!-- Vibrant bg blobs -->
+  <div style="position:absolute;top:-80px;left:-80px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(74,103,65,0.25) 0%,transparent 65%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;width:400px;height:400px;background:radial-gradient(ellipse,rgba(107,140,95,0.2) 0%,transparent 65%);pointer-events:none;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(245,240,235,0.04) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 36px;position:relative;z-index:1;">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <span style="font-size:11px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--juniper);display:block;margin-bottom:16px;">Revenue Calculator</span>
+      <h2 style="font-size:clamp(36px,4.5vw,60px);line-height:1.05;color:#fff;">See your growth potential</h2>
+      <p style="font-size:16px;font-weight:600;color:rgba(255,255,255,0.55);margin:14px auto 0;max-width:480px;line-height:1.72;">Adjust the sliders to estimate how a professional website will grow your traffic and revenue.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;">
+      <!-- Inputs -->
+      <div class="reveal d1" style="background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.1);border-radius:20px;padding:40px;">
+        <div style="margin-bottom:36px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <label style="font-size:13px;font-weight:800;color:rgba(255,255,255,0.75);letter-spacing:0.02em;">Monthly Visitors</label>
+            <span id="visitors-val" style="font-size:18px;font-family:'Cormorant Garamond',serif;font-weight:600;color:#fff;">1,000</span>
+          </div>
+          <input type="range" class="calc-slider" id="visitors" min="100" max="50000" step="100" value="1000" oninput="updateCalc()">
+          <div style="display:flex;justify-content:space-between;margin-top:7px;">
+            <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.28);">100</span>
+            <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.28);">50,000</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:36px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <label style="font-size:13px;font-weight:800;color:rgba(255,255,255,0.75);letter-spacing:0.02em;">Current Monthly Revenue</label>
+            <span id="revenue-val" style="font-size:18px;font-family:'Cormorant Garamond',serif;font-weight:600;color:#fff;">$5,000</span>
+          </div>
+          <input type="range" class="calc-slider" id="revenue" min="500" max="500000" step="500" value="5000" oninput="updateCalc()">
+          <div style="display:flex;justify-content:space-between;margin-top:7px;">
+            <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.28);">$500</span>
+            <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.28);">$500k</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <label style="font-size:13px;font-weight:800;color:rgba(255,255,255,0.75);letter-spacing:0.02em;">Avg. Customer Value</label>
+            <span id="ltv-val" style="font-size:18px;font-family:'Cormorant Garamond',serif;font-weight:600;color:#fff;">$500</span>
+          </div>
+          <input type="range" class="calc-slider" id="ltv" min="50" max="50000" step="50" value="500" oninput="updateCalc()">
+          <div style="display:flex;justify-content:space-between;margin-top:7px;">
+            <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.28);">$50</span>
+            <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.28);">$50k</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="reveal d2" style="display:flex;flex-direction:column;gap:18px;">
+        <!-- Traffic -->
+        <div style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(107,140,95,0.35);border-radius:16px;padding:28px;">
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--juniper);margin-bottom:12px;">Monthly Traffic</div>
+          <div style="display:flex;align-items:flex-end;gap:24px;margin-bottom:16px;">
+            <div>
+              <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);margin-bottom:4px;">Without Nerro</div>
+              <div id="calc-old-traffic" style="font-size:34px;font-family:'Cormorant Garamond',serif;font-weight:600;color:rgba(255,255,255,0.45);line-height:1;">1,000</div>
+            </div>
+            <div style="font-size:22px;color:rgba(255,255,255,0.2);margin-bottom:6px;">→</div>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--juniper);margin-bottom:4px;">With Nerro</div>
+              <div id="calc-new-traffic" style="font-size:34px;font-family:'Cormorant Garamond',serif;font-weight:600;color:#fff;line-height:1;">4,400</div>
+            </div>
+            <div style="margin-left:auto;">
+              <div style="background:rgba(74,103,65,0.25);border:1.5px solid rgba(74,103,65,0.5);border-radius:10px;padding:8px 14px;text-align:center;">
+                <div id="calc-traffic-pct" style="font-size:22px;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--juniper);line-height:1;">+340%</div>
+                <div style="font-size:9px;font-weight:800;color:rgba(107,140,95,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;">increase</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border-radius:4px;height:5px;overflow:hidden;">
+            <div id="traffic-bar" style="height:100%;background:linear-gradient(90deg,var(--moss),var(--juniper));border-radius:4px;width:23%;transition:width 0.6s cubic-bezier(0.22,1,0.36,1);"></div>
+          </div>
+        </div>
+
+        <!-- Revenue -->
+        <div style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(107,140,95,0.35);border-radius:16px;padding:28px;">
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--juniper);margin-bottom:12px;">Monthly Revenue</div>
+          <div style="display:flex;align-items:flex-end;gap:24px;margin-bottom:16px;">
+            <div>
+              <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);margin-bottom:4px;">Without Nerro</div>
+              <div id="calc-old-revenue" style="font-size:34px;font-family:'Cormorant Garamond',serif;font-weight:600;color:rgba(255,255,255,0.45);line-height:1;">$5,000</div>
+            </div>
+            <div style="font-size:22px;color:rgba(255,255,255,0.2);margin-bottom:6px;">→</div>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--juniper);margin-bottom:4px;">With Nerro</div>
+              <div id="calc-new-revenue" style="font-size:34px;font-family:'Cormorant Garamond',serif;font-weight:600;color:#fff;line-height:1;">$17,000</div>
+            </div>
+            <div style="margin-left:auto;">
+              <div style="background:rgba(74,103,65,0.25);border:1.5px solid rgba(74,103,65,0.5);border-radius:10px;padding:8px 14px;text-align:center;">
+                <div id="calc-revenue-pct" style="font-size:22px;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--juniper);line-height:1;">+240%</div>
+                <div style="font-size:9px;font-weight:800;color:rgba(107,140,95,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;">increase</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border-radius:4px;height:5px;overflow:hidden;">
+            <div id="revenue-bar" style="height:100%;background:linear-gradient(90deg,var(--moss),var(--juniper));border-radius:4px;width:29%;transition:width 0.6s cubic-bezier(0.22,1,0.36,1);"></div>
+          </div>
+        </div>
+
+        <!-- New clients -->
+        <div style="background:linear-gradient(135deg,rgba(74,103,65,0.22) 0%,rgba(107,140,95,0.1) 100%);border:1.5px solid rgba(107,140,95,0.4);border-radius:16px;padding:28px;display:flex;align-items:center;gap:24px;">
+          <div>
+            <div style="font-size:10px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--juniper);margin-bottom:8px;">Estimated New Clients / Mo.</div>
+            <div id="calc-new-clients" style="font-size:48px;font-family:'Cormorant Garamond',serif;font-weight:600;color:#fff;line-height:1;">+3</div>
+            <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.45);margin-top:5px;">based on 2.5% lead conversion</div>
+          </div>
+          <div style="margin-left:auto;text-align:right;">
+            <div style="font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:5px;">Extra revenue / yr</div>
+            <div id="calc-annual" style="font-size:28px;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--juniper);line-height:1;">+$144k</div>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="openModal()" style="align-self:stretch;justify-content:center;font-size:15px;padding:16px 28px;">Claim Your Growth →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ═══════ PRICING ═══════ -->
 <section id="pricing" style="padding:100px 0;border-bottom:1.5px solid var(--border);background:var(--surface);">
   <div style="max-width:1200px;margin:0 auto;padding:0 36px;">
@@ -756,7 +901,7 @@
           <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:700;color:var(--smoked);"><span style="color:var(--moss);font-weight:800;font-size:14px;">✓</span>CMS setup</div>
           <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:700;color:var(--smoked);"><span style="color:var(--moss);font-weight:800;font-size:14px;">✓</span>14-day delivery</div>
         </div>
-        <button class="btn-ghost" style="width:100%;justify-content:center;padding:12px 0;">Get started →</button>
+        <button class="btn-ghost" onclick="openModal()" style="width:100%;justify-content:center;padding:12px 0;">Get started →</button>
       </div>
 
       <div class="price-card featured reveal d2">
@@ -773,7 +918,7 @@
           <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:700;color:#fff;"><span style="font-weight:800;font-size:14px;">✓</span>Advanced CMS + forms</div>
           <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:700;color:#fff;"><span style="font-weight:800;font-size:14px;">✓</span>1 month priority support</div>
         </div>
-        <button class="btn-brown" style="width:100%;justify-content:center;padding:12px 0;background:#fff;color:var(--moss);">Start Your Project →</button>
+        <button class="btn-brown" onclick="openModal()" style="width:100%;justify-content:center;padding:12px 0;background:#fff;color:var(--moss);">Start Your Project →</button>
       </div>
 
     </div>
@@ -793,7 +938,7 @@
           <em style="font-style:italic;color:var(--juniper);"> a lot</em>
         </h2>
         <p style="font-size:15px;font-weight:600;color:var(--onyx);line-height:1.72;margin:0 0 30px;">Still unsure? We're happy to talk on a free discovery call.</p>
-        <button class="btn-primary">Book a free call →</button>
+        <button class="btn-primary" onclick="openModal()">Book a free call →</button>
       </div>
       <div class="reveal d2">
         <div class="faq-item">
@@ -856,8 +1001,8 @@
     <p class="reveal d2" style="font-size:18px;font-weight:600;color:rgba(255,255,255,0.75);line-height:1.74;margin:0 0 12px;">The only question is whether your website is the one they'll trust.</p>
     <p class="reveal d2" style="font-size:15px;font-weight:600;color:rgba(255,255,255,0.55);line-height:1.72;margin:0 0 44px;">In 30 minutes, you'll know exactly what your new site will look like, what it costs, and how fast we can launch it.</p>
     <div class="reveal d3" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
-      <button class="btn-brown" style="background:#fff;color:var(--moss);font-size:15px;padding:15px 32px;">Start Your Project →</button>
-      <button class="btn-ghost" style="border-color:rgba(255,255,255,0.35);color:#fff;font-size:15px;padding:15px 30px;" onmouseover="this.style.background='rgba(255,255,255,0.1)';this.style.borderColor='rgba(255,255,255,0.6)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.35)'">See Our Work</button>
+      <button class="btn-brown" onclick="openModal()" style="background:#fff;color:var(--moss);font-size:15px;padding:15px 32px;transition:box-shadow 0.3s,transform 0.1s;" onmouseover="this.style.boxShadow='0 0 20px rgba(255,255,255,0.5),0 0 40px rgba(255,255,255,0.2)'" onmouseout="this.style.boxShadow='none'">Start Your Project →</button>
+      <button class="btn-ghost" onclick="window.location.href='work.html'" style="border-color:rgba(255,255,255,0.35);color:#fff;font-size:15px;padding:15px 30px;transition:background 0.2s,border-color 0.2s,box-shadow 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)';this.style.borderColor='rgba(255,255,255,0.6)';this.style.boxShadow='0 0 16px rgba(255,255,255,0.25)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.35)';this.style.boxShadow='none'">See Our Work</button>
     </div>
     <p class="reveal d4" style="font-size:12.5px;font-weight:700;color:rgba(255,255,255,0.45);margin:0;">Free 30-minute call · No commitment · No sales pressure</p>
   </div>
@@ -931,6 +1076,55 @@
 </footer>
 
 
+<!-- ═══════ PROJECT MODAL ═══════ -->
+<div id="project-modal">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+  <div class="modal-card">
+    <button onclick="closeModal()" style="position:absolute;top:20px;right:24px;background:none;border:none;font-size:22px;color:var(--silken);cursor:pointer;line-height:1;padding:4px 8px;border-radius:6px;transition:color 0.15s,background 0.15s;" onmouseover="this.style.color='var(--smoked)';this.style.background='var(--elevated)'" onmouseout="this.style.color='var(--silken)';this.style.background='none'">✕</button>
+
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:20px;">
+        <img src="brand_assets/nerro_n_transparent_pfp_2048.png" alt="Nerro" style="width:44px;height:44px;object-fit:contain;">
+      </div>
+      <h2 style="font-size:38px;line-height:1.08;margin-bottom:10px;">Let's build your<br><em style="font-style:italic;color:var(--juniper);">website together</em></h2>
+      <p style="font-size:14px;font-weight:600;color:var(--onyx);line-height:1.7;margin:0;">Fill in your details and we'll be in touch within one business day to schedule your free strategy call.</p>
+    </div>
+
+    <form id="project-form" onsubmit="submitModal(event)" style="display:flex;flex-direction:column;gap:16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div>
+          <label style="display:block;font-size:12px;font-weight:800;color:var(--onyx);letter-spacing:0.06em;margin-bottom:7px;text-transform:uppercase;">Full Name</label>
+          <input type="text" name="name" placeholder="Sarah Mitchell" required>
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-weight:800;color:var(--onyx);letter-spacing:0.06em;margin-bottom:7px;text-transform:uppercase;">Phone Number</label>
+          <input type="tel" name="phone" placeholder="+1 (555) 000-0000">
+        </div>
+      </div>
+      <div>
+        <label style="display:block;font-size:12px;font-weight:800;color:var(--onyx);letter-spacing:0.06em;margin-bottom:7px;text-transform:uppercase;">Email Address</label>
+        <input type="email" name="email" placeholder="sarah@yourbrand.com" required>
+      </div>
+      <div>
+        <label style="display:block;font-size:12px;font-weight:800;color:var(--onyx);letter-spacing:0.06em;margin-bottom:7px;text-transform:uppercase;">Tell us about your project</label>
+        <textarea name="note" placeholder="E.g. I run an interior design studio and need a website that attracts high-end clients. I'd love something clean, modern, and luxury-feeling..." rows="4" style="resize:vertical;min-height:110px;"></textarea>
+      </div>
+      <button type="submit" id="modal-submit-btn" class="btn-primary" style="margin-top:6px;justify-content:center;font-size:15px;padding:16px 28px;">
+        Send My Request →
+      </button>
+      <p style="text-align:center;font-size:12px;font-weight:700;color:var(--silken);margin:0;">Free 30-min call · No commitment · We respond within 24 hours</p>
+    </form>
+
+    <div id="modal-success" style="display:none;text-align:center;padding:20px 0;">
+      <div style="font-size:52px;margin-bottom:16px;">✓</div>
+      <h3 style="font-size:28px;color:var(--moss);margin-bottom:10px;">Request received!</h3>
+      <p style="font-size:15px;font-weight:600;color:var(--onyx);line-height:1.7;margin:0 0 28px;">We'll review your details and reach out within one business day to schedule your free strategy call.</p>
+      <button class="btn-ghost" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+
 <script>
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); }, { passive: true });
@@ -967,6 +1161,72 @@
   }
   const firstFaq = document.querySelector('.faq-q.open');
   if (firstFaq) firstFaq.nextElementSibling.style.maxHeight = firstFaq.nextElementSibling.scrollHeight + 'px';
+
+  /* ── MODAL ── */
+  function openModal() {
+    document.getElementById('project-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('project-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function submitModal(e) {
+    e.preventDefault();
+    document.getElementById('project-form').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+  }
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  /* ── CALCULATOR ── */
+  function fmt(n) {
+    if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+    if (n >= 1000) return (n >= 10000 ? '$' : '') + Math.round(n).toLocaleString();
+    return n.toLocaleString();
+  }
+  function fmtV(n) { return n >= 1000 ? (n/1000).toFixed(1) + 'k' : n.toLocaleString(); }
+  function fmtDollar(n) { return '$' + (n >= 1000000 ? (n/1000000).toFixed(1) + 'M' : n >= 1000 ? Math.round(n/100)*100 >= 10000 ? (Math.round(n/100)*100).toLocaleString() : Math.round(n).toLocaleString() : n); }
+
+  function updateCalc() {
+    const visitors = parseInt(document.getElementById('visitors').value);
+    const revenue  = parseInt(document.getElementById('revenue').value);
+    const ltv      = parseInt(document.getElementById('ltv').value);
+
+    // Display input values
+    document.getElementById('visitors-val').textContent = visitors >= 1000 ? (visitors/1000).toFixed(visitors >= 10000 ? 0 : 1) + 'k' : visitors.toLocaleString();
+    document.getElementById('revenue-val').textContent = '$' + (revenue >= 1000 ? Math.round(revenue/100)*100 >= 10000 ? (Math.round(revenue/100)*100/1000).toFixed(0)+'k' : revenue.toLocaleString() : revenue);
+    document.getElementById('ltv-val').textContent = '$' + (ltv >= 1000 ? (ltv/1000).toFixed(1)+'k' : ltv);
+
+    // Growth model
+    const trafficMult = 3.4; // avg 340% increase = 4.4x total
+    const newTraffic = Math.round(visitors * trafficMult);
+    const trafficPct = Math.round((trafficMult) * 100);
+
+    const revenueMult = 2.4;
+    const newRevenue = Math.round(revenue * (1 + revenueMult));
+    const revPct = Math.round(revenueMult * 100);
+
+    const newLeadsPerMonth = Math.round(newTraffic * 0.025);
+    const extraRevPerYear  = Math.round(newLeadsPerMonth * ltv * 12);
+
+    // Update displays
+    document.getElementById('calc-old-traffic').textContent = visitors >= 1000 ? (visitors/1000).toFixed(1)+'k' : visitors.toLocaleString();
+    document.getElementById('calc-new-traffic').textContent = (visitors + newTraffic) >= 1000 ? ((visitors+newTraffic)/1000).toFixed(1)+'k' : (visitors+newTraffic).toLocaleString();
+    document.getElementById('calc-traffic-pct').textContent = '+' + trafficPct + '%';
+
+    document.getElementById('calc-old-revenue').textContent = '$' + (revenue >= 1000 ? revenue.toLocaleString() : revenue);
+    document.getElementById('calc-new-revenue').textContent = '$' + (newRevenue >= 1000 ? newRevenue.toLocaleString() : newRevenue);
+    document.getElementById('calc-revenue-pct').textContent = '+' + revPct + '%';
+
+    document.getElementById('calc-new-clients').textContent = '+' + newLeadsPerMonth;
+    document.getElementById('calc-annual').textContent = '+$' + (extraRevPerYear >= 1000000 ? (extraRevPerYear/1000000).toFixed(1)+'M' : extraRevPerYear >= 1000 ? Math.round(extraRevPerYear/1000)+'k' : extraRevPerYear);
+
+    // Progress bars (capped at 90%)
+    const tBarW = Math.min(90, (visitors / (visitors + newTraffic)) * 100 * trafficMult);
+    document.getElementById('traffic-bar').style.width = Math.min(90, tBarW) + '%';
+    document.getElementById('revenue-bar').style.width = Math.min(90, (revenueMult / (1 + revenueMult)) * 90) + '%';
+  }
+  updateCalc();
 </script>
 </body>
 </html>
